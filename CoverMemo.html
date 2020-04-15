@@ -1,0 +1,89 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Memo</title>
+    <script>
+        function calcCover(){
+            var TotalFlame = document.getElementById("MusicSec").value * 30;
+            var VisualSec = document.getElementById("VisualSec").value
+            var VocalSec = document.getElementById("VocalSec").value
+            var CenterSec = document.getElementById("CenterSec").value
+            var DanceSec = document.getElementById("DanceSec").value
+            var LeaderSec = document.getElementById("LeaderSec").value
+            var VisualCov = document.getElementById("VisualCov").value
+            var VocalCov = document.getElementById("VocalCov").value
+            var CenterCov = document.getElementById("CenterCov").value
+            var DanceCov = document.getElementById("DanceCov").value
+            var LeaderCov = document.getElementById("LeaderCov").value
+
+            var InnerHTML = "<table><tbody>";
+            var TmpTag,TmpSec;
+            var CoverCount = [0,0,0,0,0,0];
+
+            for(count =0;count < TotalFlame +1;count++){
+                TmpSec = (count/30).toFixed(2);
+                TmpTag = "<tr>";
+                TmpTag += "<td>" + TmpSec +"</td>";
+                TmpTag += calcSingle(TmpSec,VisualSec,VisualCov,"#FFFF00");
+                TmpTag += calcSingle(TmpSec,VocalSec,VocalCov,"#FFFF00");
+                TmpTag += calcSingle(TmpSec,CenterSec,CenterCov,"#FFFF00");
+                TmpTag += calcSingle(TmpSec,DanceSec,DanceCov,"#FFFF00");
+                TmpTag += calcSingle(TmpSec,LeaderSec,LeaderCov,"#FFFF00");
+                
+                TmpTag += "</tr>";
+                CoverCount[TmpTag.split("#").length-1]++;
+                InnerHTML += TmpTag;
+            }
+            InnerHTML += "</tbody></table>";
+            document.getElementById("ResultTable").innerHTML = InnerHTML;
+
+        }
+        function calcSingle(TmpSec,TypeSec,CoverSec,Color){
+            var TagString = "<td @color@>&nbsp;</td>";
+
+
+            return TagString;
+        }
+    </script>
+</head>
+<body>
+<table>
+    <tbody>
+        <tr><td>曲時間</td><td><input id="MusicSec" type="text"/></td></tr>
+    </tbody>
+</table>
+<table>
+    <tbody>
+        <tr>
+            <td style="width: 50px;">Visual</td>
+            <td><input id="VisualSec" type="text"/></td>
+            <td><select id="VisualCov"><option value=""></option><option value="8.97">かなり</option><option value="7.43">しばらく</option><option value="5.98">少し</option><option value="4.44">わずか</option><option value="2.99">一瞬</option></select></td>
+        </tr>
+        <tr>
+            <td style="width: 50px;">Vocal</td>
+            <td><input id="VocalSec" type="text"/></td>
+            <td><select id="VocalCov">><option value=""></option><option value="8.97">かなり</option><option value="7.43">しばらく</option><option value="5.98">少し</option><option value="4.44">わずか</option><option value="2.99">一瞬</option></select></td>
+        </tr>
+        <tr>
+            <td style="width: 50px;">Center</td>
+            <td><input id="CenterSec" type="text"/></td>
+            <td><select id="CenterCov">><option value=""></option><option value="8.97">かなり</option><option value="7.43">しばらく</option><option value="5.98">少し</option><option value="4.44">わずか</option><option value="2.99">一瞬</option></select></td>
+        </tr>
+        <tr>
+            <td style="width: 50px;">Dance</td>
+            <td><input id="DanceSec" type="text"/></td>
+            <td><select id="DanceCov">><option value=""></option><option value="8.97">かなり</option><option value="7.43">しばらく</option><option value="5.98">少し</option><option value="4.44">わずか</option><option value="2.99">一瞬</option></select></td>
+        </tr>
+        <tr>
+            <td style="width: 50px;">Leader</td>
+            <td><input id="LeaderSec" type="text"/></td>
+            <td><select id="LeaderCov">><option value=""></option><option value="8.97">かなり</option><option value="7.43">しばらく</option><option value="5.98">少し</option><option value="4.44">わずか</option><option value="2.99">一瞬</option></select></td>
+        </tr>
+    </tbody>
+</table>
+<div id="CoverTable"></div>
+<div id="ResultTable"></div>
+</body>
+</html>
