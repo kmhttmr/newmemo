@@ -43,7 +43,10 @@
         function calcSingle(TmpSec,TypeSec,CoverSec,Color){
             var TagString = "<td @color@>&nbsp;</td>";
             var ColorChange = false;
-            if(TmpSec = TypeSec){
+            if(TmpSec < TypeSec){
+                
+            }           
+            else if(TmpSec = TypeSec){
                 ColorChange = true;
             }
             else if(TypeSec * parseInt(TmpSec/TypeSec)<TmpSec && TmpSec <TypeSec * parseInt(TmpSec/TypeSec) +parseFloat(CoverSec)){
