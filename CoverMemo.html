@@ -44,15 +44,15 @@
             var TagString = "<td @color@>&nbsp;</td>";
             var ColorChange = false;
             if(TmpSec = TypeSec){
-                ColorChange = True;
+                ColorChange = true;
             }
             else if(TypeSec * parseInt(TmpSec/TypeSec)<TmpSec && TmpSec <TypeSec * parseInt(TmpSec/TypeSec) +parseFloat(CoverSec)){
-                ColorChange = True;
+                ColorChange = true;
             }
 
             if(ColorChange)
             {
-                TagString = TagString.replace("@color@",Color);
+                TagString = TagString.replace("@color@","bgcolor=\"" + Color+ "\"");
             }
             return TagString;
         }
