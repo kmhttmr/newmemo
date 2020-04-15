@@ -45,11 +45,8 @@
             var ColorChange = false;
             if(TmpSec < TypeSec){
                 
-            }           
-            else if(TmpSec = TypeSec){
-                ColorChange = true;
             }
-            else if(TypeSec * parseInt(TmpSec/TypeSec)<TmpSec && TmpSec <parseFloat(TypeSec * parseInt(TmpSec/TypeSec)) + parseFloat(CoverSec)){
+            else if(parseInt(TypeSec) * parseInt(TmpSec/TypeSec) <= parseFloat(TmpSec) && parseFloat(TmpSec) <= parseFloat(TypeSec * parseInt(TmpSec/TypeSec)) + parseFloat(CoverSec)){
                 ColorChange = true;
             }
 
