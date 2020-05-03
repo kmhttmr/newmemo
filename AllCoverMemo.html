@@ -48,12 +48,12 @@
 
             InnerHTML = "<table><th>0人</th><th>1人</th><th>2人</th><th>3人</th><th>4人</th><th>5人</th><tbody><tr>";
 
-            InnerHTML += "<td>" + (CoverCount[0]/(TotalFlame+1)).toFixed(2) +"%</td>";
-            InnerHTML += "<td>" + (CoverCount[1]/(TotalFlame+1)).toFixed(2) +"%</td>";
-            InnerHTML += "<td>" + (CoverCount[2]/(TotalFlame+1)).toFixed(2) +"%</td>";
-            InnerHTML += "<td>" + (CoverCount[3]/(TotalFlame+1)).toFixed(2) +"%</td>";
-            InnerHTML += "<td>" + (CoverCount[4]/(TotalFlame+1)).toFixed(2) +"%</td>";
-            InnerHTML += "<td>" + (CoverCount[5]/(TotalFlame+1)).toFixed(2) +"%</td>";
+            InnerHTML += "<td>" + (CoverCount[0]/(TotalFlame+1)*100).toFixed(2) +"%</td>";
+            InnerHTML += "<td>" + (CoverCount[1]/(TotalFlame+1)*100).toFixed(2) +"%</td>";
+            InnerHTML += "<td>" + (CoverCount[2]/(TotalFlame+1)*100).toFixed(2) +"%</td>";
+            InnerHTML += "<td>" + (CoverCount[3]/(TotalFlame+1)*100).toFixed(2) +"%</td>";
+            InnerHTML += "<td>" + (CoverCount[4]/(TotalFlame+1)*100).toFixed(2) +"%</td>";
+            InnerHTML += "<td>" + (CoverCount[5]/(TotalFlame+1)*100).toFixed(2) +"%</td>";
 
             InnerHTML += "</tr></tbody></table>";
 
@@ -75,9 +75,14 @@
             }
             return TagString;
         }
+
     </script>
 </head>
 <body>
+<select name="select" onChange="location.href=value;">
+  <option value="EncoreCoverMemo.html">アンコールカバー変動率（未実装）</option>
+  <option value="MonoCoverMemo.html">単体重複発動率</option>
+</select>
 <table>
     <tbody>
         <tr><td>曲時間</td><td><input id="MusicSec" type="text" style="width: 50px;"/></td><td>フレーム</td><td><input id="PerFrame" type="text" style="width: 50px;" value="1"/></td></tr>
