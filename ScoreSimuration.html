@@ -15,22 +15,22 @@
     <script src="ScoreCalc.js"></script>
 </head>
 <body>
-    
 <table>
     <tbody>
         <tr><td>曲Lv</td><td><input id="MusicLv" type="number" style="width: 50px;"/></td><td>曲時間</td><td><input id="MusicSec" type="number" style="width: 50px;"/></td><td>フレーム</td><td><input id="PerFrame" type="text" style="width: 50px;" disabled/></td></tr>
-        <tr><td>ノーツ数</td><td><input id="Notes" type="number" style="width: 50px;"/></td><td>アピール値</td><td><input id="Apeal" type="number" style="width: 50px;"/></td><td>初期ライフ</td>><td><input id="StartLife" type="number" style="width:50px;"/></td></tr>
+        <tr><td>ノーツ数</td><td><input id="Notes" type="number" style="width: 50px;"/></td><td>アピール値</td><td><input id="Apeal" type="number" style="width: 50px;"/></td><td>初期ライフ</td><td><input id="StartLife" type="number" style="width:50px;"/></td></tr>
         <tr><td>Long</td><td><input id="Long" type="number" style="width: 50px;"/>%</td><td>Frick</td><td><input id="Frick" type="number" style="width: 50px;"/>%</td><td>Slide</td><td><input id="Slide" type="text" style="width: 50px;"/>%</td></tr>
     </tbody>
 </table>
-<div class="InputArea"><table>
+<div class="InputArea">
+    <table>
     <tbody>
         <tr>
             <td colspan="2">1人目</td><td colspan="2">2人目</td><td colspan="2">3人目</td><td colspan="2">4人目</td><td colspan="2">5人目</td>
         </tr>
         <tr>
             <td colspan="2">
-                <select id="FirstSkill" type="text">
+                <select id="FirstSkill">
                 <option value=""></option>
                 <optgroup label="スコア">
                     <option value="ScoreUp">スコアアップ</option>
@@ -39,6 +39,7 @@
                     <option value="LongAct">ロングアクト</option>
                     <option value="FrickAct">フリックアクト</option>
                     <option value="SlideAct">スライドアクト</option>
+                    <option value="Motif">モチーフ</option>
                 </optgroup> 
                 <optgroup label="コンボ">
                     <option value="ComboBonus">コンボボーナス</option>
@@ -61,38 +62,16 @@
             </select>           
             </td>
             <td colspan="2">
-                <select id="SecondSkill" type="text">
-                <option value=""></option>
-                <optgroup label="スコア">
-                    <option value="ScoreUp">スコアアップ</option>
-                    <option value="OverLoad">オーバーロード</option>
-                    <option value="Concentlation">コンセントレーション</option>
-                </optgroup> 
-                <optgroup label="コンボ">
-                    <option value="ComboBonus">コンボボーナス</option>
-                    <option value="Alround">オールラウンド</option>
-                    <option value="LifeSparkle">ライフスパークル</option>
-                    <option value="Tuning">チューニング</option>
-                </optgroup> 
-                <optgroup label="複合">
-                    <option value="Focus">フォーカス</option>
-                    <option value="Synergy">シナジー</option>
-                    <option value="Cordinate">コーディネイト</option>
-                </optgroup> 
-                <optgroup label="その他">
-                    <option value="SkillBoost">スキルブースト</option>
-                    <option value="Unsamble">アンサンブル</option>
-                    <option value="Symphony">シンフォニー</option>
-                </optgroup> 
-            </select>
-           </td>
-            <td colspan="2">
-                <select id="ThirdSkill" type="text">
+                <select id="SecondSkill">
                     <option value=""></option>
                     <optgroup label="スコア">
                         <option value="ScoreUp">スコアアップ</option>
                         <option value="OverLoad">オーバーロード</option>
                         <option value="Concentlation">コンセントレーション</option>
+                        <option value="LongAct">ロングアクト</option>
+                        <option value="FrickAct">フリックアクト</option>
+                        <option value="SlideAct">スライドアクト</option>
+                        <option value="Motif">モチーフ</option>
                     </optgroup> 
                     <optgroup label="コンボ">
                         <option value="ComboBonus">コンボボーナス</option>
@@ -104,47 +83,27 @@
                         <option value="Focus">フォーカス</option>
                         <option value="Synergy">シナジー</option>
                         <option value="Cordinate">コーディネイト</option>
+                        <option value="Alternate">オルタネイト</option>
                     </optgroup> 
                     <optgroup label="その他">
+                        <option value="LifeUp">回復</option>
                         <option value="SkillBoost">スキルブースト</option>
                         <option value="Unsamble">アンサンブル</option>
                         <option value="Symphony">シンフォニー</option>
                     </optgroup> 
-                </select>
-           </td>
-            <td colspan="2">
-                <select id="FourthSkill" type="text">
-                <option value=""></option>
-                <optgroup label="スコア">
-                    <option value="ScoreUp">スコアアップ</option>
-                    <option value="OverLoad">オーバーロード</option>
-                    <option value="Concentlation">コンセントレーション</option>
-                </optgroup> 
-                <optgroup label="コンボ">
-                    <option value="ComboBonus">コンボボーナス</option>
-                    <option value="Alround">オールラウンド</option>
-                    <option value="LifeSparkle">ライフスパークル</option>
-                    <option value="Tuning">チューニング</option>
-                </optgroup> 
-                <optgroup label="複合">
-                    <option value="Focus">フォーカス</option>
-                    <option value="Synergy">シナジー</option>
-                    <option value="Cordinate">コーディネイト</option>
-                </optgroup> 
-                <optgroup label="その他">
-                    <option value="SkillBoost">スキルブースト</option>
-                    <option value="Unsamble">アンサンブル</option>
-                    <option value="Symphony">シンフォニー</option>
-                </optgroup> 
             </select>
            </td>
             <td colspan="2">
-                <select id="FifthSkill" type="text">
+                <select id="ThirdSkill">
                 <option value=""></option>
                 <optgroup label="スコア">
                     <option value="ScoreUp">スコアアップ</option>
                     <option value="OverLoad">オーバーロード</option>
                     <option value="Concentlation">コンセントレーション</option>
+                    <option value="LongAct">ロングアクト</option>
+                    <option value="FrickAct">フリックアクト</option>
+                    <option value="SlideAct">スライドアクト</option>
+                    <option value="Motif">モチーフ</option>
                 </optgroup> 
                 <optgroup label="コンボ">
                     <option value="ComboBonus">コンボボーナス</option>
@@ -156,12 +115,78 @@
                     <option value="Focus">フォーカス</option>
                     <option value="Synergy">シナジー</option>
                     <option value="Cordinate">コーディネイト</option>
+                    <option value="Alternate">オルタネイト</option>
                 </optgroup> 
                 <optgroup label="その他">
+                    <option value="LifeUp">回復</option>
                     <option value="SkillBoost">スキルブースト</option>
                     <option value="Unsamble">アンサンブル</option>
                     <option value="Symphony">シンフォニー</option>
                 </optgroup> 
+                </select>
+           </td>
+            <td colspan="2">
+                <select id="FourthSkill">
+                    <option value=""></option>
+                    <optgroup label="スコア">
+                        <option value="ScoreUp">スコアアップ</option>
+                        <option value="OverLoad">オーバーロード</option>
+                        <option value="Concentlation">コンセントレーション</option>
+                        <option value="LongAct">ロングアクト</option>
+                        <option value="FrickAct">フリックアクト</option>
+                        <option value="SlideAct">スライドアクト</option>
+                        <option value="Motif">モチーフ</option>
+                    </optgroup> 
+                    <optgroup label="コンボ">
+                        <option value="ComboBonus">コンボボーナス</option>
+                        <option value="Alround">オールラウンド</option>
+                        <option value="LifeSparkle">ライフスパークル</option>
+                        <option value="Tuning">チューニング</option>
+                    </optgroup> 
+                    <optgroup label="複合">
+                        <option value="Focus">フォーカス</option>
+                        <option value="Synergy">シナジー</option>
+                        <option value="Cordinate">コーディネイト</option>
+                        <option value="Alternate">オルタネイト</option>
+                    </optgroup> 
+                    <optgroup label="その他">
+                        <option value="LifeUp">回復</option>
+                        <option value="SkillBoost">スキルブースト</option>
+                        <option value="Unsamble">アンサンブル</option>
+                        <option value="Symphony">シンフォニー</option>
+                    </optgroup> 
+            </select>
+           </td>
+            <td colspan="2">
+                <select id="FifthSkill">
+                    <option value=""></option>
+                    <optgroup label="スコア">
+                        <option value="ScoreUp">スコアアップ</option>
+                        <option value="OverLoad">オーバーロード</option>
+                        <option value="Concentlation">コンセントレーション</option>
+                        <option value="LongAct">ロングアクト</option>
+                        <option value="FrickAct">フリックアクト</option>
+                        <option value="SlideAct">スライドアクト</option>
+                        <option value="Motif">モチーフ</option>
+                    </optgroup> 
+                    <optgroup label="コンボ">
+                        <option value="ComboBonus">コンボボーナス</option>
+                        <option value="Alround">オールラウンド</option>
+                        <option value="LifeSparkle">ライフスパークル</option>
+                        <option value="Tuning">チューニング</option>
+                    </optgroup> 
+                    <optgroup label="複合">
+                        <option value="Focus">フォーカス</option>
+                        <option value="Synergy">シナジー</option>
+                        <option value="Cordinate">コーディネイト</option>
+                        <option value="Alternate">オルタネイト</option>
+                    </optgroup> 
+                    <optgroup label="その他">
+                        <option value="LifeUp">回復</option>
+                        <option value="SkillBoost">スキルブースト</option>
+                        <option value="Unsamble">アンサンブル</option>
+                        <option value="Symphony">シンフォニー</option>
+                    </optgroup> 
             </select>
         </td>
         </tr>
