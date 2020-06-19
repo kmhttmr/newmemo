@@ -1,3 +1,5 @@
+var ActiveSkillRate = [0,0,0,0,0,0,0];
+
 var MusicLevel ={
     5:"1",
     6:"1.025",
@@ -38,8 +40,6 @@ var ComboRate = {
     80:"1.7",
     90:"2.0"
 };
-
-
 
 var Motif ={
     10:"1",
@@ -125,12 +125,12 @@ var SkillEffect = {
 };
 
 function calcCover(){
-    var TotalFlame = document.getElementById("MusicSec").value * document.getElementById("PerFrame").value;
-    var VisualSec = document.getElementById("VisualSec").value;
-    var VocalSec = document.getElementById("VocalSec").value;
-    var CenterSec = document.getElementById("CenterSec").value;
-    var DanceSec = document.getElementById("DanceSec").value;
-    var LeaderSec = document.getElementById("LeaderSec").value;
+    var BaseRate = document.getElementById("MusicSec").value * document.getElementById("PerFrame").value;
+    var FirstSkill = EffectSetting(document.getElementById("FirstSkill").value,SkillEffect);
+    var SecondSkill = EffectSetting(document.getElementById("SecondSkill").value,SkillEffect);
+    var ThirdSkill = EffectSetting(document.getElementById("ThirdSkill").value,SkillEffect);
+    var FourthSkill = EffectSetting(document.getElementById("FourthSkill").value,SkillEffect);
+    var FifthSkill = EffectSetting(document.getElementById("FifthSkill").value,SkillEffect);
     var VisualCov = document.getElementById("VisualCov").value;
     var VocalCov = document.getElementById("VocalCov").value;
     var CenterCov = document.getElementById("CenterCov").value;
@@ -162,7 +162,6 @@ function calcCover(){
         InnerHTML += TmpTag;
     }
     InnerHTML += "</tbody></table></div>";
-    // document.getElementById("ResultTable").innerHTML = InnerHTML;
 
     InnerHTML = "<table><th>0人</th><th>1人</th><th>2人</th><th>3人</th><th>4人</th><th>5人</th><tbody><tr>";
 
@@ -177,19 +176,12 @@ function calcCover(){
 
     document.getElementById("CoverTable").innerHTML = InnerHTML;
 }
-function calcSingle(TmpSec,TypeSec,CoverSec,Color){
-    var TagString = "<td style=\"width:50px;\" @color@>&nbsp;</td>";
-    var ColorChange = false;
-    if(parseInt(TmpSec) < TypeSec){
-        
-    }
-    else if(parseInt(TypeSec) * parseInt(TmpSec/TypeSec) <= parseFloat(TmpSec) && parseFloat(TmpSec) <= parseFloat(parseInt(TypeSec) * parseInt(TmpSec/TypeSec)) + parseFloat(CoverSec)){
-        ColorChange = true;
-    }
 
-    if(ColorChange)
-    {
-        TagString = TagString.replace("@color@","bgcolor=\"" + Color+ "\"");
+function EffectSetting(keyName,effectList){
+    var effect;
+
+    for(var key in effectList){
+        if(key == keynNme){effect = effectList[key];break;}
     }
-    return TagString;
+    return effect;
 }
