@@ -5,26 +5,21 @@
     <meta charset="utf-8">
     <title>Memo</title>
     <style type="text/css">
-        <!--
-        .InputArea table, .InputArea td {border:solid 1px;};
+        table, td {border:solid 1px;};
         input[type="number"]::-webkit-outer-spin-button,
         input[type="number"]::-webkit-inner-spin-button {
             -webkit-appearance: none;
-            margin: 0;
         };
-        -->
     </style>
 
     <script src="ScoreCalc.js"></script>
 </head>
 <body>
-<select name="select" onChange="location.href=value;">
-    <option value="AllCoverMemo.html">全体重複変動率</option>
-  <option value="EncoreCoverMemo.html">アンコールカバー変動率（未実装）</option>
-</select>
 <table>
     <tbody>
-        <tr><td>曲時間</td><td><input id="MusicSec" type="number" style="width: 50px;"/></td><td>フレーム</td><td><input id="PerFrame" type="text" style="width: 50px;" value="1"/></td></tr>
+        <tr><td>曲Lv</td><td><input id="MusicLv" type="number" style="width: 50px;"/></td><td>曲時間</td><td><input id="MusicSec" type="number" style="width: 50px;"/></td><td>フレーム</td><td><input id="PerFrame" type="text" style="width: 50px;" disabled/></td></tr>
+        <tr><td>ノーツ数</td><td><input id="Notes" type="number" style="width: 50px;"/></td><td>アピール値</td><td><input id="MusicSec" type="number" style="width: 50px;"/></td></tr>
+        <tr><td>Long</td><td><input id="Long" type="number" style="width: 50px;"/>%</td><td>Frick</td><td><input id="Frick" type="number" style="width: 50px;"/>%</td><td>Slide</td><td><input id="Slide" type="text" style="width: 50px;"/>%</td></tr>
     </tbody>
 </table>
 <div class="InputArea"><table>
