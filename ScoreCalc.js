@@ -1,3 +1,35 @@
+var SkillEffect = {
+    ScoreUp:[17,17,17,17,0,0,0],
+    OverLoad:[18,18,18,18,0,0,0],
+    Concentlation:[22,22,22,22,0,0,0],
+    LongAct:[10,30,10,10,0,0,0],
+    FrickAct:[10,10,30,10,0,0,0],
+    SlideAct:[10,10,10,40,0,0,0],
+    ComboBonus:[0,0,0,0,18,0,0],
+    Alround:[0,0,0,0,13,0,0],
+    LifeSparkle:[0,0,0,0,0,0,0],
+    Tuning:[0,0,0,0,13,0,0],
+    Focus:[16,16,16,16,14,0,0],
+    Synergy:[16,16,16,16,15,0,0],
+    Cordinate:[10,10,10,10,15,0,0],
+    Alternate:[0,0,0,0,-20,0,1],
+    SkillBoost:[0,0,0,0,0,20,0],
+    Unsamble:[0,0,0,0,0,50,0],
+    Symphony:[0,0,0,0,0,50,0]
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 function calcCover(){
     var TotalFlame = document.getElementById("MusicSec").value * document.getElementById("PerFrame").value;
     var VisualSec = document.getElementById("VisualSec").value
@@ -15,7 +47,7 @@ function calcCover(){
     InnerHTML += "<div style=\"overflow-y:scroll;width:350px;height:500px;\"><table><tbody>";
     
     var TmpTag,TmpSec;
-    var CoverCount = [0,0,0,0,0,0];
+    var CoverCount = [0,0,0,0,0];
 
     for(count =0;count <= TotalFlame;count++){
         TmpSec = (count/document.getElementById("PerFrame").value).toFixed(2);
