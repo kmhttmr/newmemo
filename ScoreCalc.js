@@ -140,6 +140,7 @@ function calcCover(){
     
     $(function() {
        $.getJSON("data/test.json" , function(data) {
+           alert(data);
         });
       });
 
