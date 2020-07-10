@@ -139,11 +139,10 @@ function calcCover(){
     FifthSkill = EffectSetting(document.getElementById("FifthSkill").value,SkillEffect);
     
     $(function() {
-       $.getJSON("data/test.json" , function(data) {
-
+       $.getJSON(document.getElementById("PerFrame").value , function(data) {
+        alert(data[1].sec);
         });
       });
-    alert(data[1].sec);
     var FirstSec = document.getElementById("FirstSec").value;
     var SecondSec = document.getElementById("SecondSec").value;
     var ThirdSec = document.getElementById("ThirdSec").value;
