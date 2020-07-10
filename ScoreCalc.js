@@ -141,12 +141,9 @@ function calcCover(){
     $(function() {
        $.getJSON("data/test.json" , function(data) {
 
-            for(var i = 0; i < data.length; i++) {
-                alert(data[i].id);
-            }
         });
       });
-
+    alert(data[1].sec);
     var FirstSec = document.getElementById("FirstSec").value;
     var SecondSec = document.getElementById("SecondSec").value;
     var ThirdSec = document.getElementById("ThirdSec").value;
