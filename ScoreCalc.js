@@ -145,7 +145,7 @@ function calcCover(){
         len = data.length;
   
       for(var i = 0; i < len; i++) {
-        alert(data[i]);
+        alert(data[i].id);
       }
         });
       });
