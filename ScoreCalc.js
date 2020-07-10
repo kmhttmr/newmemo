@@ -140,13 +140,10 @@ function calcCover(){
     
     $(function() {
        $.getJSON("data/test.json" , function(data) {
-        var
-        ulObj = $("#demo"),
-        len = data.length;
-  
-      for(var i = 0; i < len; i++) {
-        alert(data[i].id);
-      }
+
+            for(var i = 0; i < data.length; i++) {
+                alert(data[i].id);
+            }
         });
       });
 
