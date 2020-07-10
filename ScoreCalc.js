@@ -137,17 +137,26 @@ function calcCover(){
     ThirdSkill = EffectSetting(document.getElementById("ThirdSkill").value,SkillEffect);
     FourthSkill = EffectSetting(document.getElementById("FourthSkill").value,SkillEffect);
     FifthSkill = EffectSetting(document.getElementById("FifthSkill").value,SkillEffect);
-    
-    $(function() {
-       $.getJSON(document.getElementById("PerFrame").value , function(data) {
-        alert(data[1].sec);
-        });
-      });
     var FirstSec = document.getElementById("FirstSec").value;
     var SecondSec = document.getElementById("SecondSec").value;
     var ThirdSec = document.getElementById("ThirdSec").value;
     var FourthSec = document.getElementById("FourthSec").value;
     var FifthSec = document.getElementById("FifthSec").value;
+    
+    $(function() {
+       $.getJSON(document.getElementById("PerFrame").value , function(data) {
+            for(var i = 0;i < data.length; i++){
+
+
+
+
+
+
+                
+            }
+        });
+      });
+
 
     var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">Vi</th><th style=\"width:50px;\">Vo</th><th style=\"width:50px;\">Ce</th><th style=\"width:50px;\">Da</th><th style=\"width:50px;\">Le</th></table>";
     InnerHTML += "<div style=\"overflow-y:scroll;width:350px;height:500px;\"><table><tbody>";
