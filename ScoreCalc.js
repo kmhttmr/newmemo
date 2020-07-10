@@ -1,4 +1,9 @@
 var ActiveSkillRate = [0,0,0,0,0,0,0];
+var FirstSkill = ["",0,0,0,0,0,0,0,0];
+var SecondSkill = ["",0,0,0,0,0,0,0,0];
+var ThirdSkill = ["",0,0,0,0,0,0,0,0];
+var FourthSkill = ["",0,0,0,0,0,0,0,0];
+var FifthSkill = ["",0,0,0,0,0,0,0,0];
 
 var MusicLevel ={
     5:"1",
@@ -105,37 +110,44 @@ var SparkleEffect ={
 };
 
 var SkillEffect = {
-    ScoreUp:[17,17,17,17,0,0,0],
-    OverLoad:[18,18,18,18,0,0,0],
-    Concentlation:[22,22,22,22,0,0,0],
-    LongAct:[10,30,10,10,0,0,0],
-    FrickAct:[10,10,30,10,0,0,0],
-    SlideAct:[10,10,10,40,0,0,0],
-    ComboBonus:[0,0,0,0,18,0,0],
-    Alround:[0,0,0,0,13,0,0],
-    LifeSparkle:[0,0,0,0,0,0,0],
-    Tuning:[0,0,0,0,13,0,0],
-    Focus:[16,16,16,16,14,0,0],
-    Synergy:[16,16,16,16,15,0,0],
-    Cordinate:[10,10,10,10,15,0,0],
-    Alternate:[0,0,0,0,-20,0,1],
-    SkillBoost:[0,0,0,0,0,20,0],
-    Unsamble:[0,0,0,0,0,50,0],
-    Symphony:[0,0,0,0,0,50,0]
+    ScoreUp:["ScoreUp",17,17,17,17,0,0,0,0],
+    OverLoad:["OverLoad",18,18,18,18,0,0,0,0],
+    Concentlation:["Concentlation",22,22,22,22,0,0,0,0],
+    LongAct:["LongAct",10,30,10,10,0,0,0,0],
+    FrickAct:["FrickAct",10,10,30,10,0,0,0,0],
+    SlideAct:["SlideAct",10,10,10,40,0,0,0,0],
+    ComboBonus:["ComboBonus",0,0,0,0,18,0.0,0],
+    Alround:["Alround",0,0,0,0,13,0,0,0],
+    LifeSparkle:["LifeSparkle",0,0,0,0,0,0,0,0],
+    Tuning:["Tuning",0,0,0,0,13,0,0,0],
+    Focus:["Focus",16,16,16,16,14,0,0,0],
+    Synergy:["Synergy",16,16,16,16,15,0,0,0],
+    LifeUp:["LifeUp",0,0,0,0,0,0,3,0],
+    Alternate:["Alternate",0,0,0,0,-20,0,0,0],
+    Cordinate:["Cordinate",10,10,10,10,15,0,0,0],
+    SkillBoost:["SkillBoost",0,0,0,0,0,20,0,1],
+    Unsamble:["Unsamble",0,0,0,0,0,50,0,0],
+    Symphony:["Symphony",0,0,0,0,0,50,0,1]
 };
 
 function calcCover(){
     var BaseRate = document.getElementById("MusicSec").value * document.getElementById("PerFrame").value;
-    var FirstSkill = EffectSetting(document.getElementById("FirstSkill").value,SkillEffect);
-    var SecondSkill = EffectSetting(document.getElementById("SecondSkill").value,SkillEffect);
-    var ThirdSkill = EffectSetting(document.getElementById("ThirdSkill").value,SkillEffect);
-    var FourthSkill = EffectSetting(document.getElementById("FourthSkill").value,SkillEffect);
-    var FifthSkill = EffectSetting(document.getElementById("FifthSkill").value,SkillEffect);
-    var VisualCov = document.getElementById("VisualCov").value;
-    var VocalCov = document.getElementById("VocalCov").value;
-    var CenterCov = document.getElementById("CenterCov").value;
-    var DanceCov = document.getElementById("DanceCov").value;
-    var LeaderCov = document.getElementById("LeaderCov").value;
+    FirstSkill = EffectSetting(document.getElementById("FirstSkill").value,SkillEffect);
+    SecondSkill = EffectSetting(document.getElementById("SecondSkill").value,SkillEffect);
+    ThirdSkill = EffectSetting(document.getElementById("ThirdSkill").value,SkillEffect);
+    FourthSkill = EffectSetting(document.getElementById("FourthSkill").value,SkillEffect);
+    FifthSkill = EffectSetting(document.getElementById("FifthSkill").value,SkillEffect);
+    
+    $(function() {
+       $.getJSON("data/test.json" , function(data) {
+        });
+      });
+
+    var FirstSec = document.getElementById("FirstSec").value;
+    var SecondSec = document.getElementById("SecondSec").value;
+    var ThirdSec = document.getElementById("ThirdSec").value;
+    var FourthSec = document.getElementById("FourthSec").value;
+    var FifthSec = document.getElementById("FifthSec").value;
 
     var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">Vi</th><th style=\"width:50px;\">Vo</th><th style=\"width:50px;\">Ce</th><th style=\"width:50px;\">Da</th><th style=\"width:50px;\">Le</th></table>";
     InnerHTML += "<div style=\"overflow-y:scroll;width:350px;height:500px;\"><table><tbody>";
@@ -143,7 +155,7 @@ function calcCover(){
     var TmpTag,TmpSec;
     var CoverCount = [0,0,0,0,0];
 
-    for(count =0;count <= TotalFlame;count++){
+    /*for(count =0;count <= TotalFlame;count++){
         TmpSec = (count/document.getElementById("PerFrame").value).toFixed(2);
         TmpTag = "<tr>";
         TmpTag += "<td>" + TmpSec +"</td>";
@@ -174,14 +186,15 @@ function calcCover(){
 
     InnerHTML += "</tr></tbody></table>";
 
-    document.getElementById("CoverTable").innerHTML = InnerHTML;
+    document.getElementById("CoverTable").innerHTML = InnerHTML;*/
 }
 
 function EffectSetting(keyName,effectList){
-    var effect;
-
-    for(var key in effectList){
-        if(key == keynNme){effect = effectList[key];break;}
+    var effect = ["",0,0,0,0,0,0,0,0];
+    if(keyName != ''){
+        for(var key in effectList){
+            if(key == keyName){effect = effectList[key];break;}
+        }
     }
     return effect;
 }
