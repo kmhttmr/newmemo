@@ -158,7 +158,7 @@ function calcCover(){
     $(function() {
        $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
-                if(TmpSeq != data["sec"]){
+                if(TmpSec != data["sec"]){
                     ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml;
                     ActiveSkillSplitHtml = "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
                     TmpSec = data["sec"];
