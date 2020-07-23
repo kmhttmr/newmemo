@@ -143,28 +143,46 @@ function calcCover(){
     var ThirdSec = document.getElementById("ThirdSec").value;
     var FourthSec = document.getElementById("FourthSec").value;
     var FifthSec = document.getElementById("FifthSec").value;
-    var FirstInterval = document.getElementById().value
+    var FirstInterval = document.getElementById("FirstType").value;
+    var SecondInterval = document.getElementById("SecondType").value;
+    var ThirdInterval = document.getElementById("ThirdType").value;
+    var FourthInterval = document.getElementById("FourthType").value;
+    var FifthInterval = document.getElementById("FifthType").value;
 
-
-    var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">Vi</th><th style=\"width:50px;\">Vo</th><th style=\"width:50px;\">Ce</th><th style=\"width:50px;\">Da</th><th style=\"width:50px;\">Le</th></table>";
-    InnerHTML += "<div style=\"overflow-y:scroll;width:350px;height:500px;\"><table><tbody>";
+    var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
 
     
-    var TmpTag;
+    var TmpSec=0,ActiveSkillHtml,ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
     var CoverCount = [0,0,0,0,0];
 
     $(function() {
        $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
-                if(true){}
+                if(TmpSeq != data["sec"]){
+                    ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml;
+                    ActiveSkillSplitHtml = "<tr><td>sec</td><td>first</td><td>second</td><td>third</td><td>fourth</td><td>fifth</td><td>score</td><td>combo</td></tr>";
+                    TmpSec = data["sec"];
+                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("sec",TmpSec);
+                }
+                ActiveSkillRate = [ActiveSkillRate[0],0,0,0,0,0,0];
+                if(data["sec"] >= FirstSec && Math.floor(data["sec"]/FirstSec)*FirstSec <= data["sec"] && Math.floor(data["sec"]/FirstSec)*FirstSec+parseFloat(FirstInterval) >= data["sec"]){
+                    ActiveSkillRate[1] = 1;
+                }
+                if(data["sec"] >= SecondSec && Math.floor(data["sec"]/SecondSec)*SecondSec <= data["sec"] && Math.floor(data["sec"]/SecondSec)*SecondSec+parseFloat(SecondInterval) >= data["sec"]){
+                    ActiveSkillRate[2] = 1;
+                }
+                if(data["sec"] >= ThirdSec && Math.floor(data["sec"]/ThirdSec)*ThirdSec <= data["sec"] && Math.floor(data["sec"]/ThirdSec)*ThirdSec+parseFloat(ThirdInterval) >= data["sec"]){
+                    ActiveSkillRate[3] = 1;
+                }
+                if(data["sec"] >= FourthSec && Math.floor(data["sec"]/FourthSec)*FourthSec <= data["sec"] && Math.floor(data["sec"]/FourthSec)*FourthSec+parseFloat(FourthInterval) >= data["sec"]){
+                    ActiveSkillRate[4] = 1;
+                }
+                if(data["sec"] >= FifthSec && Math.floor(data["sec"]/FifthSec)*FifthSec <= data["sec"] && Math.floor(data["sec"]/FifthSec)*FifthSec+parseFloat(FifthInterval) >= data["sec"]){
+                    ActiveSkillRate[5] = 1;
+                }
 
-                if(true){}
 
-                if(true){}
 
-                if(true){}
-
-                if(true){}
             }
         });
       });
