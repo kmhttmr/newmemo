@@ -4,7 +4,7 @@ var SecondSkill = ["",0,0,0,0,0,0,0,0];
 var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
-var TmpSec=0,ActiveSkillHtml="";
+var TmpSec=0;
 var ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 
 var MusicLevel ={
@@ -160,12 +160,13 @@ function calcCover(){
        $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
                 if(TmpSec != data[i]["sec"]){
-                    ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
-                    ActiveSkillSplitHtml = "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
+                    ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","") +"<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
+
                     TmpSec = data[i]["sec"];
-                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("sec",TmpSec);
+                    ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
                 }
                 ActiveSkillRate = [ActiveSkillRate[0],0,0,0,0,0,0];
+                //発動をチェック
                 if(TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
                     ActiveSkillRate[1] = 1;
                 }
@@ -182,18 +183,17 @@ function calcCover(){
                     ActiveSkillRate[5] = 1;
                 }
 
-
                 if(ActiveSkillRate[1] ==1){
-                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("first","#FF0000");
+                    ActiveSkillHtml = ActiveSkillHtml.replace("first","#FF0000");
                 }
                 if(ActiveSkillRate[2] ==1){
-                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("second","#00FF00");
+                    ActiveSkillHtml = ActiveSkillHtml.replace("second","#00FF00");
                 }
                 if(ActiveSkillRate[3] ==1){
-                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("third","#0000FF");
+                    ActiveSkillHtml = ActiveSkillHtml.replace("third","#0000FF");
                 }
                 if(ActiveSkillRate[4] ==1){
-                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fourth","#FF00FF");
+                    ActiveSkillHtml = ActiveSkillHtml.replace("fourth","#FF00FF");
                 }
                 if(ActiveSkillRate[5] ==1){
                     ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fifth","#00FFFF");
@@ -215,4 +215,14 @@ function EffectSetting(keyName,effectList){
         }
     }
     return effect;
+}
+
+function SkillRateSetting(keyName,effectList){
+    var rate;
+    if(keyName != ''){
+        for(var key in effectList){
+            if(key == keyName){rate = effectList[key];break;}
+        }
+    }
+    return rate;
 }
