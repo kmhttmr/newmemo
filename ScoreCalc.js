@@ -154,7 +154,7 @@ function calcCover(){
     var CoverCount = [0,0,0,0,0];
 
     $(function() {
-       $.getJSON(document.getElementById("PerFrame").value , function(data) {
+       $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
                 if(true){}
 
