@@ -158,10 +158,10 @@ function calcCover(){
     $(function() {
        $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
-                if(TmpSec != data[0]["sec"]){
+                if(TmpSec != data[i]["sec"]){
                     ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml;
                     ActiveSkillSplitHtml = "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
-                    TmpSec = data[0]["sec"];
+                    TmpSec = data[i]["sec"];
                     ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("sec",TmpSec);
                 }
                 ActiveSkillRate = [ActiveSkillRate[0],0,0,0,0,0,0];
