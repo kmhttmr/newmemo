@@ -154,7 +154,7 @@ function calcCover(){
     
     var TmpSec=0,ActiveSkillHtml="",ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
     var CoverCount = [0,0,0,0,0];
-
+    var data;
     $(function() {
        $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
@@ -199,10 +199,10 @@ function calcCover(){
                 }
             }
         });
+        InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
+  
+        document.getElementById("ResultTable").innerHTML = InnerHTML;
       });
-      InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
-
-      document.getElementById("ResultTable").innerHTML = InnerHTML;
     
 }
 
