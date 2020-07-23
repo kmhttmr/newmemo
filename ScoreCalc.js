@@ -160,7 +160,7 @@ function calcCover(){
             for(var i = 0;i < data.length; i++){
                 if(TmpSeq != data["sec"]){
                     ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml;
-                    ActiveSkillSplitHtml = "<tr><td>sec</td><td>first</td><td>second</td><td>third</td><td>fourth</td><td>fifth</td><td>score</td><td>combo</td></tr>";
+                    ActiveSkillSplitHtml = "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
                     TmpSec = data["sec"];
                     ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("sec",TmpSec);
                 }
@@ -182,13 +182,27 @@ function calcCover(){
                 }
 
 
-
+                if(ActiveSkillRate[1] ==1){
+                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("first","#FF0000");
+                }
+                if(ActiveSkillRate[2] ==1){
+                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("second","#00FF00");
+                }
+                if(ActiveSkillRate[3] ==1){
+                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("third","#0000FF");
+                }
+                if(ActiveSkillRate[4] ==1){
+                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fourth","#FF00FF");
+                }
+                if(ActiveSkillRate[5] ==1){
+                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fifth","#00FFFF");
+                }
             }
         });
       });
+      InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
 
-
-
+      document.getElementById("ResultTable").innerHTML = InnerHTML;
     
 }
 
