@@ -152,14 +152,14 @@ function calcCover(){
     var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
 
     
-    var TmpSec=0,ActiveSkillHtml,ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
+    var TmpSec=0,ActiveSkillHtml="",ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
     var CoverCount = [0,0,0,0,0];
 
     $(function() {
        $.getJSON(music , function(data) {
             for(var i = 0;i < data.length; i++){
                 if(TmpSec != data[i]["sec"]){
-                    ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml;
+                    ActiveSkillHtml = ActiveSkillHtml +ActiveSkillSplitHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
                     ActiveSkillSplitHtml = "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
                     TmpSec = data[i]["sec"];
                     ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("sec",TmpSec);
