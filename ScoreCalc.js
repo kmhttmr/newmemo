@@ -5,6 +5,7 @@ var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
 var TmpSec=0,ActiveSkillHtml="";
+var ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 
 var MusicLevel ={
     5:"1",
@@ -153,7 +154,6 @@ function calcCover(){
     var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
 
     
-    var ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
     var CoverCount = [0,0,0,0,0];
     var data;
     $(function() {
