@@ -213,7 +213,7 @@ function calcCover(){
             ComboRate_now = MSRateSetting((i+1)/(data.length),ComboRate);
             var ScoreUpRate = 1+(TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100))/100;
             var ComboUpRate = ComboUpRateSet();
-            TotalScore = TotalScore + Math.round(baseScore*ComboRate_now*SkillRate);
+            TotalScore = TotalScore + Math.round(baseScore*ComboRate_now*ScoreUpRate * ComboUpRate);
             
 
             if(SkillActivate[1] ==1){
