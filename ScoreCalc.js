@@ -212,7 +212,7 @@ function calcCover(){
             TotalLife = TotalLife + TmpSocreRate[7] + TmpSocreRate[8];
             ComboRate_now = MSRateSetting((i+1)/(data.length),ComboRate);
             var SkillRate = (1+(TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100))/100)*(1+(TmpSocreRate[5] * (1+TmpSocreRate[6]/100))/100);
-            TotalScore = TotalScore + Math.Round(baseScore*ComboRate_now*SkillRate);
+            TotalScore = TotalScore + Math.round(baseScore*ComboRate_now*SkillRate);
             
 
             if(SkillActivate[1] ==1){
