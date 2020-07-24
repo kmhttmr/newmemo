@@ -175,7 +175,7 @@ function calcCover(){
     InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
     $.ajaxSetup({ async: false }); 
     $.getJSON(music , function(data) {
-        var baseScore = apeal * SkillRateSetting(document.getElementById("Level").value,MusicLevel) /(data.length-1);
+        var baseScore = apeal * SkillRateSetting(document.getElementById("Level").value,MusicLevel) /(data.length);
         for(var i = 0;i < data.length; i++){
             beforeTime = TmpSec;
             if(TmpSec != data[i]["sec"]){
@@ -210,9 +210,9 @@ function calcCover(){
                 SetNormalRate();
             }
             TotalLife = TotalLife + TmpSocreRate[7] + TmpSocreRate[8];
-            ComboRate_now = MSRateSetting((i+1)/(data.length-1),ComboRate);
- 
-            TotalScore = TotalScore + (baseScore*ComboRate_now*(TmpSocreRate[data[i]["type"]]*(1+TmpSocreRate[6]/100))*(TmpSocreRate[5]*(1+TmpSocreRate[6]/100)));
+            ComboRate_now = MSRateSetting((i+1)/(data.length),ComboRate);
+            var SkillRate = (1+(TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100))/100)*(1+(TmpSocreRate[5] * (1+TmpSocreRate[6]/100))/100);
+            TotalScore = TotalScore + Math.Round(baseScore*ComboRate_now*SkillRate);
             
 
             if(SkillActivate[1] ==1){
