@@ -209,7 +209,7 @@ function calcCover(){
             }else{
                 SetNormalRate();
             }
-            TotalLife = ToTalLife + TmpSocreRate[7] + TmpSocreRate[8];
+            TotalLife = TotalLife + TmpSocreRate[7] + TmpSocreRate[8];
             ComboRate_now = MSRateSetting((i+1)/(data.Length-1),ComboRate);
  
             TotalScore = TotalScore + (baseScore*(TmpSocreRate[data[i]["type"]]*(1+TmpSocreRate[6]/100))*(TmpSocreRate[5]*(1+TmpSocreRate[6]/100)));
