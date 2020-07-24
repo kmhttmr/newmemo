@@ -211,7 +211,8 @@ function calcCover(){
             }
             TotalLife = TotalLife + TmpSocreRate[7] + TmpSocreRate[8];
             ComboRate_now = MSRateSetting((i+1)/(data.length),ComboRate);
-            var SkillRate = (1+(TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100))/100)*(1+(TmpSocreRate[5] * (1+TmpSocreRate[6]/100))/100);
+            var ScoreUpRate = 1+(TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100))/100;
+            var ComboUpRate = ComboUpRateSet();
             TotalScore = TotalScore + Math.round(baseScore*ComboRate_now*SkillRate);
             
 
@@ -242,6 +243,17 @@ function calcCover(){
     
 }
 
+function ComboUpRateSet(){
+    var rate = 1;
+    if(TmpSocreRate[5]<0){
+        rate =rate + TmpSocreRate[5]/100;
+    }else {
+        rate =(rate + TmpSocreRate[5]/100)*(1+TmpSocreRate[6]/100);
+    }
+    return rate;
+}
+
+
 function SetResonanceRate(){}
 
 function SetNormalRate(){
@@ -254,7 +266,7 @@ function SetNormalRate(){
         if(TmpSocreRate[6] < FirstSkill[6]){TmpSocreRate[6] = FirstSkill[6];}
         if(TmpSocreRate[7] < FirstSkill[7]){TmpSocreRate[7] = FirstSkill[7];}
         if(TmpSocreRate[8] < FirstSkill[8]){TmpSocreRate[8] = FirstSkill[8];}
-        if(TmpSocreRate[5] == 0 && FirstSkill[0]== "Alternate"){TmpSocreRate[5] = FirstSkill[5];}
+        if(SkillActivate[0] == 1 && TmpSocreRate[5] == 0 && FirstSkill[0]== "Alternate"){TmpSocreRate[5] = FirstSkill[5];}
         else if(FirstSkill[5] > 0){TmpSocreRate[5] = FirstSkill[5];}
     }
 
@@ -266,7 +278,7 @@ function SetNormalRate(){
         if(TmpSocreRate[6] < SecondSkill[6]){TmpSocreRate[6] = SecondSkill[6];}
         if(TmpSocreRate[7] < SecondSkill[7]){TmpSocreRate[7] = SecondSkill[7];}
         if(TmpSocreRate[8] < SecondSkill[8]){TmpSocreRate[8] = SecondSkill[8];}
-        if(TmpSocreRate[5] == 0 && SecondSkill[0]== "Alternate"){TmpSocreRate[5] = SecondSkill[5];}
+        if(SkillActivate[0] == 1 && TmpSocreRate[5] == 0 && SecondSkill[0]== "Alternate"){TmpSocreRate[5] = SecondSkill[5];}
         else if(SecondSkill[5] > 0){TmpSocreRate[5] = SecondSkill[5];}
     }
     if(SkillActivate[3]==1){
@@ -277,7 +289,7 @@ function SetNormalRate(){
         if(TmpSocreRate[6] < ThirdSkill[6]){TmpSocreRate[6] = ThirdSkill[6];}
         if(TmpSocreRate[7] < ThirdSkill[7]){TmpSocreRate[7] = ThirdSkill[7];}
         if(TmpSocreRate[8] < ThirdSkill[8]){TmpSocreRate[8] = ThirdSkill[8];}
-        if(TmpSocreRate[5] == 0 && ThirdSkill[0]== "Alternate"){TmpSocreRate[5] = ThirdSkill[5];}
+        if(SkillActivate[0] == 1 && TmpSocreRate[5] == 0 && ThirdSkill[0]== "Alternate"){TmpSocreRate[5] = ThirdSkill[5];}
         else if(ThirdSkill[5] > 0){TmpSocreRate[5] = ThirdSkill[5];}
     }
     if(SkillActivate[4]==1){
@@ -288,7 +300,7 @@ function SetNormalRate(){
         if(TmpSocreRate[6] < FourthSkill[6]){TmpSocreRate[6] = FourthSkill[6];}
         if(TmpSocreRate[7] < FourthSkill[7]){TmpSocreRate[7] = FourthSkill[7];}
         if(TmpSocreRate[8] < FourthSkill[8]){TmpSocreRate[8] = FourthSkill[8];}
-        if(TmpSocreRate[5] == 0 && FourthSkill[0]== "Alternate"){TmpSocreRate[5] = FourthSkill[5];}
+        if(SkillActivate[0] == 1 && TmpSocreRate[5] == 0 && FourthSkill[0]== "Alternate"){TmpSocreRate[5] = FourthSkill[5];}
         else if(FourthSkill[5] > 0){TmpSocreRate[5] = FourthSkill[5];}
     }
     if(SkillActivate[5]==1){
@@ -299,7 +311,7 @@ function SetNormalRate(){
         if(TmpSocreRate[6] < FifthSkill[6]){TmpSocreRate[6] = FifthSkill[6];}
         if(TmpSocreRate[7] < FifthSkill[7]){TmpSocreRate[7] = FifthSkill[7];}
         if(TmpSocreRate[8] < FifthSkill[8]){TmpSocreRate[8] = FifthSkill[8];}
-        if(TmpSocreRate[5] == 0 && FifthSkill[0]== "Alternate"){TmpSocreRate[5] = FifthSkill[5];}
+        if(SkillActivate[0] == 1 && TmpSocreRate[5] == 0 && FifthSkill[0]== "Alternate"){TmpSocreRate[5] = FifthSkill[5];}
         else if(FifthSkill[5] > 0){TmpSocreRate[5] = FifthSkill[5];}
     }
     
@@ -388,298 +400,309 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
 
 function CheckAlternate(){
     if(FirstSkill[0] != "Alternate" && SecondSkill[0] != "Alternate" && ThirdSkill[0] != "Alternate" && FourthSkill[0] != "Alternate" && FifthSkill[0] != "Alternate" ){return;}
-    if(SkillActivate[1]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FirstSkill[0])>=0){
-        SkillActivate[0]=1;
-        if(SecondSkill[0]== "Aleternate"){
-            if(SecondSkill[1] < FirstSkill[1]*1.5){
-                SecondSkill[1] = FirstSkill[1]*1.5;
-            }
-            if(SecondSkill[2] < FirstSkill[2]*1.5){
-                SecondSkill[2] = FirstSkill[2]*1.5;
-            }
-            if(SecondSkill[3] < FirstSkill[3]*1.5){
-                SecondSkill[3] = FirstSkill[3]*1.5;
-            }
-            if(SecondSkill[4] < FirstSkill[4]*1.5){
-                SecondSkill[4] = FirstSkill[4]*1.5;
-            }
-        }
-        if(ThirdSkill[0]== "Aleternate"){
-            if(ThirdSkill[1] < FirstSkill[1]*1.5){
-                ThirdSkill[1] = FirstSkill[1]*1.5;
-            }
-            if(ThirdSkill[2] < FirstSkill[2]*1.5){
-                ThirdSkill[2] = FirstSkill[2]*1.5;
-            }
-            if(ThirdSkill[3] < FirstSkill[3]*1.5){
-                ThirdSkill[3] = FirstSkill[3]*1.5;
-            }
-            if(ThirdSkill[4] < FirstSkill[4]*1.5){
-                ThirdSkill[4] = FirstSkill[4]*1.5;
-            }
-        }
-        if(FourthSkill[0]== "Aleternate"){
-            if(FourthSkill[1] < FirstSkill[1]*1.5){
-                FourthSkill[1] = FirstSkill[1]*1.5;
-            }
-            if(FourthSkill[2] < FirstSkill[2]*1.5){
-                FourthSkill[2] = FirstSkill[2]*1.5;
-            }
-            if(FourthSkill[3] < FirstSkill[3]*1.5){
-                FourthSkill[3] = FirstSkill[3]*1.5;
-            }
-            if(FourthSkill[4] < FirstSkill[4]*1.5){
-                FourthSkill[4] = FirstSkill[4]*1.5;
-            }
-        }
-        if(FifthSkill[0]== "Aleternate"){
-            if(FifthSkill[1] < FirstSkill[1]*1.5){
-                FifthSkill[1] = FirstSkill[1]*1.5;
-            }
-            if(FifthSkill[2] < FirstSkill[2]*1.5){
-                FifthSkill[2] = FirstSkill[2]*1.5;
-            }
-            if(FifthSkill[3] < FirstSkill[3]*1.5){
-                FifthSkill[3] = FirstSkill[3]*1.5;
-            }
-            if(FifthSkill[4] < FirstSkill[4]*1.5){
-                FifthSkill[4] = FirstSkill[4]*1.5;
-            }
-        }
+    if(SkillActivate[0] == 0){
+        if(SkillActivate[1] == 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FirstSkill[0])>=0){SkillActivate[0]=1;}
+        if(SkillActivate[2] == 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(SecondSkill[0])>=0){SkillActivate[0]=1;}
+        if(SkillActivate[3] == 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(ThirdSkill[0])>=0){SkillActivate[0]=1;}
+        if(SkillActivate[4] == 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FourthSkill[0])>=0){SkillActivate[0]=1;}
+        if(SkillActivate[5] == 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FifthSkill[0])>=0){SkillActivate[0]=1;}
     }
-    if(SkillActivate[2]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(SecondSkill[0])>=0){
-        SkillActivate[0]=1;
-        if(FirstSkill[0]== "Aleternate"){
-            if(FirstSkill[1] < SecondSkill[1]*1.5){
-                FirstSkill[1] = SecondSkill[1]*1.5;
+    
+    
+    if(SkillActivate[0]== 1){
+        if(SkillActivate[1]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FirstSkill[0])>=0){
+
+            if(SecondSkill[0]== "Aleternate"){
+                if(SecondSkill[1] < FirstSkill[1]*1.5){
+                    SecondSkill[1] = FirstSkill[1]*1.5;
+                }
+                if(SecondSkill[2] < FirstSkill[2]*1.5){
+                    SecondSkill[2] = FirstSkill[2]*1.5;
+                }
+                if(SecondSkill[3] < FirstSkill[3]*1.5){
+                    SecondSkill[3] = FirstSkill[3]*1.5;
+                }
+                if(SecondSkill[4] < FirstSkill[4]*1.5){
+                    SecondSkill[4] = FirstSkill[4]*1.5;
+                }
             }
-            if(FirstSkill[2] < SecondSkill[2]*1.5){
-                FirstSkill[2] = SecondSkill[2]*1.5;
+            if(ThirdSkill[0]== "Aleternate"){
+                if(ThirdSkill[1] < FirstSkill[1]*1.5){
+                    ThirdSkill[1] = FirstSkill[1]*1.5;
+                }
+                if(ThirdSkill[2] < FirstSkill[2]*1.5){
+                    ThirdSkill[2] = FirstSkill[2]*1.5;
+                }
+                if(ThirdSkill[3] < FirstSkill[3]*1.5){
+                    ThirdSkill[3] = FirstSkill[3]*1.5;
+                }
+                if(ThirdSkill[4] < FirstSkill[4]*1.5){
+                    ThirdSkill[4] = FirstSkill[4]*1.5;
+                }
             }
-            if(FirstSkill[3] < SecondSkill[3]*1.5){
-                FirstSkill[3] = SecondSkill[3]*1.5;
+            if(FourthSkill[0]== "Aleternate"){
+                if(FourthSkill[1] < FirstSkill[1]*1.5){
+                    FourthSkill[1] = FirstSkill[1]*1.5;
+                }
+                if(FourthSkill[2] < FirstSkill[2]*1.5){
+                    FourthSkill[2] = FirstSkill[2]*1.5;
+                }
+                if(FourthSkill[3] < FirstSkill[3]*1.5){
+                    FourthSkill[3] = FirstSkill[3]*1.5;
+                }
+                if(FourthSkill[4] < FirstSkill[4]*1.5){
+                    FourthSkill[4] = FirstSkill[4]*1.5;
+                }
             }
-            if(FirstSkill[4] < SecondSkill[4]*1.5){
-                FirstSkill[4] = SecondSkill[4]*1.5;
-            }
-        }
-        if(ThirdSkill[0]== "Aleternate"){
-            if(ThirdSkill[1] < SecondSkill[1]*1.5){
-                ThirdSkill[1] = SecondSkill[1]*1.5;
-            }
-            if(ThirdSkill[2] < SecondSkill[2]*1.5){
-                ThirdSkill[2] = SecondSkill[2]*1.5;
-            }
-            if(ThirdSkill[3] < SecondSkill[3]*1.5){
-                ThirdSkill[3] = SecondSkill[3]*1.5;
-            }
-            if(ThirdSkill[4] < SecondSkill[4]*1.5){
-                ThirdSkill[4] = SecondSkill[4]*1.5;
-            }
-        }
-        if(FourthSkill[0]== "Aleternate"){
-            if(FourthSkill[1] < SecondSkill[1]*1.5){
-                FourthSkill[1] = SecondSkill[1]*1.5;
-            }
-            if(FourthSkill[2] < SecondSkill[2]*1.5){
-                FourthSkill[2] = SecondSkill[2]*1.5;
-            }
-            if(FourthSkill[3] < SecondSkill[3]*1.5){
-                FourthSkill[3] = SecondSkill[3]*1.5;
-            }
-            if(FourthSkill[4] < SecondSkill[4]*1.5){
-                FourthSkill[4] = SecondSkill[4]*1.5;
-            }
-        }
-        if(FifthSkill[0]== "Aleternate"){
-            if(FifthSkill[1] < SecondSkill[1]*1.5){
-                FifthSkill[1] = SecondSkill[1]*1.5;
-            }
-            if(FifthSkill[2] < SecondSkill[2]*1.5){
-                FifthSkill[2] = SecondSkill[2]*1.5;
-            }
-            if(FifthSkill[3] < SecondSkill[3]*1.5){
-                FifthSkill[3] = SecondSkill[3]*1.5;
-            }
-            if(FifthSkill[4] < SecondSkill[4]*1.5){
-                FifthSkill[4] = SecondSkill[4]*1.5;
-            }
-        }
-    }
-    if(SkillActivate[3]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(ThirdSkill[0])>=0){
-        SkillActivate[0]=1;
-        if(FirstSkill[0]== "Aleternate"){
-            if(FirstSkill[1] < ThirdSkill[1]*1.5){
-                FirstSkill[1] = ThirdSkill[1]*1.5;
-            }
-            if(FirstSkill[2] < ThirdSkill[2]*1.5){
-                FirstSkill[2] = ThirdSkill[2]*1.5;
-            }
-            if(FirstSkill[3] < ThirdSkill[3]*1.5){
-                FirstSkill[3] = ThirdSkill[3]*1.5;
-            }
-            if(FirstSkill[4] < ThirdSkill[4]*1.5){
-                FirstSkill[4] = ThirdSkill[4]*1.5;
+            if(FifthSkill[0]== "Aleternate"){
+                if(FifthSkill[1] < FirstSkill[1]*1.5){
+                    FifthSkill[1] = FirstSkill[1]*1.5;
+                }
+                if(FifthSkill[2] < FirstSkill[2]*1.5){
+                    FifthSkill[2] = FirstSkill[2]*1.5;
+                }
+                if(FifthSkill[3] < FirstSkill[3]*1.5){
+                    FifthSkill[3] = FirstSkill[3]*1.5;
+                }
+                if(FifthSkill[4] < FirstSkill[4]*1.5){
+                    FifthSkill[4] = FirstSkill[4]*1.5;
+                }
             }
         }
-        if(SecondSkill[0]== "Aleternate"){
-            if(SecondSkill[1] < ThirdSkill[1]*1.5){
-                SecondSkill[1] = ThirdSkill[1]*1.5;
+        if(SkillActivate[2]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(SecondSkill[0])>=0){
+            SkillActivate[0]=1;
+            if(FirstSkill[0]== "Aleternate"){
+                if(FirstSkill[1] < SecondSkill[1]*1.5){
+                    FirstSkill[1] = SecondSkill[1]*1.5;
+                }
+                if(FirstSkill[2] < SecondSkill[2]*1.5){
+                    FirstSkill[2] = SecondSkill[2]*1.5;
+                }
+                if(FirstSkill[3] < SecondSkill[3]*1.5){
+                    FirstSkill[3] = SecondSkill[3]*1.5;
+                }
+                if(FirstSkill[4] < SecondSkill[4]*1.5){
+                    FirstSkill[4] = SecondSkill[4]*1.5;
+                }
             }
-            if(SecondSkill[2] < ThirdSkill[2]*1.5){
-                SecondSkill[2] = ThirdSkill[2]*1.5;
+            if(ThirdSkill[0]== "Aleternate"){
+                if(ThirdSkill[1] < SecondSkill[1]*1.5){
+                    ThirdSkill[1] = SecondSkill[1]*1.5;
+                }
+                if(ThirdSkill[2] < SecondSkill[2]*1.5){
+                    ThirdSkill[2] = SecondSkill[2]*1.5;
+                }
+                if(ThirdSkill[3] < SecondSkill[3]*1.5){
+                    ThirdSkill[3] = SecondSkill[3]*1.5;
+                }
+                if(ThirdSkill[4] < SecondSkill[4]*1.5){
+                    ThirdSkill[4] = SecondSkill[4]*1.5;
+                }
             }
-            if(SecondSkill[3] < ThirdSkill[3]*1.5){
-                SecondSkill[3] = ThirdSkill[3]*1.5;
+            if(FourthSkill[0]== "Aleternate"){
+                if(FourthSkill[1] < SecondSkill[1]*1.5){
+                    FourthSkill[1] = SecondSkill[1]*1.5;
+                }
+                if(FourthSkill[2] < SecondSkill[2]*1.5){
+                    FourthSkill[2] = SecondSkill[2]*1.5;
+                }
+                if(FourthSkill[3] < SecondSkill[3]*1.5){
+                    FourthSkill[3] = SecondSkill[3]*1.5;
+                }
+                if(FourthSkill[4] < SecondSkill[4]*1.5){
+                    FourthSkill[4] = SecondSkill[4]*1.5;
+                }
             }
-            if(SecondSkill[4] < ThirdSkill[4]*1.5){
-                SecondSkill[4] = ThirdSkill[4]*1.5;
-            }
-        }
-        if(FourthSkill[0]== "Aleternate"){
-            if(FourthSkill[1] < ThirdSkill[1]*1.5){
-                FourthSkill[1] = ThirdSkill[1]*1.5;
-            }
-            if(FourthSkill[2] < ThirdSkill[2]*1.5){
-                FourthSkill[2] = ThirdSkill[2]*1.5;
-            }
-            if(FourthSkill[3] < ThirdSkill[3]*1.5){
-                FourthSkill[3] = ThirdSkill[3]*1.5;
-            }
-            if(FourthSkill[4] < ThirdSkill[4]*1.5){
-                FourthSkill[4] = ThirdSkill[4]*1.5;
-            }
-        }
-        if(FifthSkill[0]== "Aleternate"){
-            if(FifthSkill[1] < ThirdSkill[1]*1.5){
-                FifthSkill[1] = ThirdSkill[1]*1.5;
-            }
-            if(FifthSkill[2] < ThirdSkill[2]*1.5){
-                FifthSkill[2] = ThirdSkill[2]*1.5;
-            }
-            if(FifthSkill[3] < ThirdSkill[3]*1.5){
-                FifthSkill[3] = ThirdSkill[3]*1.5;
-            }
-            if(FifthSkill[4] < ThirdSkill[4]*1.5){
-                FifthSkill[4] = ThirdSkill[4]*1.5;
-            }
-        }
-    }
-    if(SkillActivate[4]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FourthSkill[0])>=0){
-        SkillActivate[0]=1;
-        if(FirstSkill[0]== "Aleternate"){
-            if(FirstSkill[1] < FourthSkill[1]*1.5){
-                FirstSkill[1] = FourthSkill[1]*1.5;
-            }
-            if(FirstSkill[2] < FourthSkill[2]*1.5){
-                FirstSkill[2] = FourthSkill[2]*1.5;
-            }
-            if(FirstSkill[3] < FourthSkill[3]*1.5){
-                FirstSkill[3] = FourthSkill[3]*1.5;
-            }
-            if(FirstSkill[4] < FourthSkill[4]*1.5){
-                FirstSkill[4] = FourthSkill[4]*1.5;
-            }
-        }
-        if(SecondSkill[0]== "Aleternate"){
-            if(SecondSkill[1] < FourthSkill[1]*1.5){
-                SecondSkill[1] = FourthSkill[1]*1.5;
-            }
-            if(SecondSkill[2] < FourthSkill[2]*1.5){
-                SecondSkill[2] = FourthSkill[2]*1.5;
-            }
-            if(SecondSkill[3] < FourthSkill[3]*1.5){
-                SecondSkill[3] = FourthSkill[3]*1.5;
-            }
-            if(SecondSkill[4] < FourthSkill[4]*1.5){
-                SecondSkill[4] = FourthSkill[4]*1.5;
+            if(FifthSkill[0]== "Aleternate"){
+                if(FifthSkill[1] < SecondSkill[1]*1.5){
+                    FifthSkill[1] = SecondSkill[1]*1.5;
+                }
+                if(FifthSkill[2] < SecondSkill[2]*1.5){
+                    FifthSkill[2] = SecondSkill[2]*1.5;
+                }
+                if(FifthSkill[3] < SecondSkill[3]*1.5){
+                    FifthSkill[3] = SecondSkill[3]*1.5;
+                }
+                if(FifthSkill[4] < SecondSkill[4]*1.5){
+                    FifthSkill[4] = SecondSkill[4]*1.5;
+                }
             }
         }
-        if(ThirdSkill[0]== "Aleternate"){
-            if(ThirdSkill[1] < FourthSkill[1]*1.5){
-                ThirdSkill[1] = FourthSkill[1]*1.5;
+        if(SkillActivate[3]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(ThirdSkill[0])>=0){
+            SkillActivate[0]=1;
+            if(FirstSkill[0]== "Aleternate"){
+                if(FirstSkill[1] < ThirdSkill[1]*1.5){
+                    FirstSkill[1] = ThirdSkill[1]*1.5;
+                }
+                if(FirstSkill[2] < ThirdSkill[2]*1.5){
+                    FirstSkill[2] = ThirdSkill[2]*1.5;
+                }
+                if(FirstSkill[3] < ThirdSkill[3]*1.5){
+                    FirstSkill[3] = ThirdSkill[3]*1.5;
+                }
+                if(FirstSkill[4] < ThirdSkill[4]*1.5){
+                    FirstSkill[4] = ThirdSkill[4]*1.5;
+                }
             }
-            if(ThirdSkill[2] < FourthSkill[2]*1.5){
-                ThirdSkill[2] = FourthSkill[2]*1.5;
+            if(SecondSkill[0]== "Aleternate"){
+                if(SecondSkill[1] < ThirdSkill[1]*1.5){
+                    SecondSkill[1] = ThirdSkill[1]*1.5;
+                }
+                if(SecondSkill[2] < ThirdSkill[2]*1.5){
+                    SecondSkill[2] = ThirdSkill[2]*1.5;
+                }
+                if(SecondSkill[3] < ThirdSkill[3]*1.5){
+                    SecondSkill[3] = ThirdSkill[3]*1.5;
+                }
+                if(SecondSkill[4] < ThirdSkill[4]*1.5){
+                    SecondSkill[4] = ThirdSkill[4]*1.5;
+                }
             }
-            if(ThirdSkill[3] < FourthSkill[3]*1.5){
-                ThirdSkill[3] = FourthSkill[3]*1.5;
+            if(FourthSkill[0]== "Aleternate"){
+                if(FourthSkill[1] < ThirdSkill[1]*1.5){
+                    FourthSkill[1] = ThirdSkill[1]*1.5;
+                }
+                if(FourthSkill[2] < ThirdSkill[2]*1.5){
+                    FourthSkill[2] = ThirdSkill[2]*1.5;
+                }
+                if(FourthSkill[3] < ThirdSkill[3]*1.5){
+                    FourthSkill[3] = ThirdSkill[3]*1.5;
+                }
+                if(FourthSkill[4] < ThirdSkill[4]*1.5){
+                    FourthSkill[4] = ThirdSkill[4]*1.5;
+                }
             }
-            if(ThirdSkill[4] < FourthSkill[4]*1.5){
-                ThirdSkill[4] = FourthSkill[4]*1.5;
-            }
-        }
-        if(FifthSkill[0]== "Aleternate"){
-            if(FifthSkill[1] < FourthSkill[1]*1.5){
-                FifthSkill[1] = FourthSkill[1]*1.5;
-            }
-            if(FifthSkill[2] < FourthSkill[2]*1.5){
-                FifthSkill[2] = FourthSkill[2]*1.5;
-            }
-            if(FifthSkill[3] < FourthSkill[3]*1.5){
-                FifthSkill[3] = FourthSkill[3]*1.5;
-            }
-            if(FifthSkill[4] < FourthSkill[4]*1.5){
-                FifthSkill[4] = FourthSkill[4]*1.5;
-            }
-        }
-    }
-    if(SkillActivate[5]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FifthSkill[0])>=0){
-        SkillActivate[0]=1;
-        if(FirstSkill[0]== "Aleternate"){
-            if(FirstSkill[1] < FifthSkill[1]*1.5){
-                FirstSkill[1] = FifthSkill[1]*1.5;
-            }
-            if(FirstSkill[2] < FifthSkill[2]*1.5){
-                FirstSkill[2] = FifthSkill[2]*1.5;
-            }
-            if(FirstSkill[3] < FifthSkill[3]*1.5){
-                FirstSkill[3] = FifthSkill[3]*1.5;
-            }
-            if(FirstSkill[4] < FifthSkill[4]*1.5){
-                FirstSkill[4] = FifthSkill[4]*1.5;
-            }
-        }
-        if(SecondSkill[0]== "Aleternate"){
-            if(SecondSkill[1] < FifthSkill[1]*1.5){
-                SecondSkill[1] = FifthSkill[1]*1.5;
-            }
-            if(SecondSkill[2] < FifthSkill[2]*1.5){
-                SecondSkill[2] = FifthSkill[2]*1.5;
-            }
-            if(SecondSkill[3] < FifthSkill[3]*1.5){
-                SecondSkill[3] = FifthSkill[3]*1.5;
-            }
-            if(SecondSkill[4] < FifthSkill[4]*1.5){
-                SecondSkill[4] = FifthSkill[4]*1.5;
-            }
-        }
-        if(ThirdSkill[0]== "Aleternate"){
-            if(ThirdSkill[1] < FifthSkill[1]*1.5){
-                ThirdSkill[1] = FifthSkill[1]*1.5;
-            }
-            if(ThirdSkill[2] < FifthSkill[2]*1.5){
-                ThirdSkill[2] = FifthSkill[2]*1.5;
-            }
-            if(ThirdSkill[3] < FifthSkill[3]*1.5){
-                ThirdSkill[3] = FifthSkill[3]*1.5;
-            }
-            if(ThirdSkill[4] < FifthSkill[4]*1.5){
-                ThirdSkill[4] = FifthSkill[4]*1.5;
+            if(FifthSkill[0]== "Aleternate"){
+                if(FifthSkill[1] < ThirdSkill[1]*1.5){
+                    FifthSkill[1] = ThirdSkill[1]*1.5;
+                }
+                if(FifthSkill[2] < ThirdSkill[2]*1.5){
+                    FifthSkill[2] = ThirdSkill[2]*1.5;
+                }
+                if(FifthSkill[3] < ThirdSkill[3]*1.5){
+                    FifthSkill[3] = ThirdSkill[3]*1.5;
+                }
+                if(FifthSkill[4] < ThirdSkill[4]*1.5){
+                    FifthSkill[4] = ThirdSkill[4]*1.5;
+                }
             }
         }
-        if(FourthSkill[0]== "Aleternate"){
-            if(FourthSkill[1] < FifthSkill[1]*1.5){
-                FourthSkill[1] = FifthSkill[1]*1.5;
+        if(SkillActivate[4]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FourthSkill[0])>=0){
+            SkillActivate[0]=1;
+            if(FirstSkill[0]== "Aleternate"){
+                if(FirstSkill[1] < FourthSkill[1]*1.5){
+                    FirstSkill[1] = FourthSkill[1]*1.5;
+                }
+                if(FirstSkill[2] < FourthSkill[2]*1.5){
+                    FirstSkill[2] = FourthSkill[2]*1.5;
+                }
+                if(FirstSkill[3] < FourthSkill[3]*1.5){
+                    FirstSkill[3] = FourthSkill[3]*1.5;
+                }
+                if(FirstSkill[4] < FourthSkill[4]*1.5){
+                    FirstSkill[4] = FourthSkill[4]*1.5;
+                }
             }
-            if(FourthSkill[2] < FifthSkill[2]*1.5){
-                FourthSkill[2] = FifthSkill[2]*1.5;
+            if(SecondSkill[0]== "Aleternate"){
+                if(SecondSkill[1] < FourthSkill[1]*1.5){
+                    SecondSkill[1] = FourthSkill[1]*1.5;
+                }
+                if(SecondSkill[2] < FourthSkill[2]*1.5){
+                    SecondSkill[2] = FourthSkill[2]*1.5;
+                }
+                if(SecondSkill[3] < FourthSkill[3]*1.5){
+                    SecondSkill[3] = FourthSkill[3]*1.5;
+                }
+                if(SecondSkill[4] < FourthSkill[4]*1.5){
+                    SecondSkill[4] = FourthSkill[4]*1.5;
+                }
             }
-            if(FourthSkill[3] < FifthSkill[3]*1.5){
-                FourthSkill[3] = FifthSkill[3]*1.5;
+            if(ThirdSkill[0]== "Aleternate"){
+                if(ThirdSkill[1] < FourthSkill[1]*1.5){
+                    ThirdSkill[1] = FourthSkill[1]*1.5;
+                }
+                if(ThirdSkill[2] < FourthSkill[2]*1.5){
+                    ThirdSkill[2] = FourthSkill[2]*1.5;
+                }
+                if(ThirdSkill[3] < FourthSkill[3]*1.5){
+                    ThirdSkill[3] = FourthSkill[3]*1.5;
+                }
+                if(ThirdSkill[4] < FourthSkill[4]*1.5){
+                    ThirdSkill[4] = FourthSkill[4]*1.5;
+                }
             }
-            if(FourthSkill[4] < FifthSkill[4]*1.5){
-                FourthSkill[4] = FifthSkill[4]*1.5;
+            if(FifthSkill[0]== "Aleternate"){
+                if(FifthSkill[1] < FourthSkill[1]*1.5){
+                    FifthSkill[1] = FourthSkill[1]*1.5;
+                }
+                if(FifthSkill[2] < FourthSkill[2]*1.5){
+                    FifthSkill[2] = FourthSkill[2]*1.5;
+                }
+                if(FifthSkill[3] < FourthSkill[3]*1.5){
+                    FifthSkill[3] = FourthSkill[3]*1.5;
+                }
+                if(FifthSkill[4] < FourthSkill[4]*1.5){
+                    FifthSkill[4] = FourthSkill[4]*1.5;
+                }
+            }
+        }
+        if(SkillActivate[5]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FifthSkill[0])>=0){
+            SkillActivate[0]=1;
+            if(FirstSkill[0]== "Aleternate"){
+                if(FirstSkill[1] < FifthSkill[1]*1.5){
+                    FirstSkill[1] = FifthSkill[1]*1.5;
+                }
+                if(FirstSkill[2] < FifthSkill[2]*1.5){
+                    FirstSkill[2] = FifthSkill[2]*1.5;
+                }
+                if(FirstSkill[3] < FifthSkill[3]*1.5){
+                    FirstSkill[3] = FifthSkill[3]*1.5;
+                }
+                if(FirstSkill[4] < FifthSkill[4]*1.5){
+                    FirstSkill[4] = FifthSkill[4]*1.5;
+                }
+            }
+            if(SecondSkill[0]== "Aleternate"){
+                if(SecondSkill[1] < FifthSkill[1]*1.5){
+                    SecondSkill[1] = FifthSkill[1]*1.5;
+                }
+                if(SecondSkill[2] < FifthSkill[2]*1.5){
+                    SecondSkill[2] = FifthSkill[2]*1.5;
+                }
+                if(SecondSkill[3] < FifthSkill[3]*1.5){
+                    SecondSkill[3] = FifthSkill[3]*1.5;
+                }
+                if(SecondSkill[4] < FifthSkill[4]*1.5){
+                    SecondSkill[4] = FifthSkill[4]*1.5;
+                }
+            }
+            if(ThirdSkill[0]== "Aleternate"){
+                if(ThirdSkill[1] < FifthSkill[1]*1.5){
+                    ThirdSkill[1] = FifthSkill[1]*1.5;
+                }
+                if(ThirdSkill[2] < FifthSkill[2]*1.5){
+                    ThirdSkill[2] = FifthSkill[2]*1.5;
+                }
+                if(ThirdSkill[3] < FifthSkill[3]*1.5){
+                    ThirdSkill[3] = FifthSkill[3]*1.5;
+                }
+                if(ThirdSkill[4] < FifthSkill[4]*1.5){
+                    ThirdSkill[4] = FifthSkill[4]*1.5;
+                }
+            }
+            if(FourthSkill[0]== "Aleternate"){
+                if(FourthSkill[1] < FifthSkill[1]*1.5){
+                    FourthSkill[1] = FifthSkill[1]*1.5;
+                }
+                if(FourthSkill[2] < FifthSkill[2]*1.5){
+                    FourthSkill[2] = FifthSkill[2]*1.5;
+                }
+                if(FourthSkill[3] < FifthSkill[3]*1.5){
+                    FourthSkill[3] = FifthSkill[3]*1.5;
+                }
+                if(FourthSkill[4] < FifthSkill[4]*1.5){
+                    FourthSkill[4] = FifthSkill[4]*1.5;
+                }
             }
         }
     }
