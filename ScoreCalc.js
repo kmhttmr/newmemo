@@ -234,6 +234,13 @@ function calcCover(){
     
 }
 
+function SetNomarlScoreRate(){
+
+    return;
+}
+
+
+
 function SetSparkle(){
     if(FirstSkill[0]=="LifeSparkle"){
         FirstSkill[5] == SkillRateSetting(TotalLife,SparkleEffect);
