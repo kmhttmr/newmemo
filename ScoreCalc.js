@@ -284,7 +284,7 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
 
 
 function CheckAlternate(){
-    if(FirstSkill[0] != "Alternate" && Secondkill[0] != "Alternate" && ThirdSkill[0] != "Alternate" && FourthSkill[0] != "Alternate" && FifthSkill[0] != "Alternate" ){return;}
+    if(FirstSkill[0] != "Alternate" && SecondSkill[0] != "Alternate" && ThirdSkill[0] != "Alternate" && FourthSkill[0] != "Alternate" && FifthSkill[0] != "Alternate" ){return;}
     if(SkillActivate[1]== 1 && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(FirstSkill[0])>=0){
         SkillActivate[0]=1;
         if(SecondSkill[0]== "Aleternate"){
