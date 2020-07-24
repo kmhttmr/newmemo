@@ -189,10 +189,10 @@ function calcCover(){
             if(FirstSec != "" && TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
                 if(FirstSkill[0] != "Alternate"){SkillActivate[1] = 1;}
                 else if(SkillActivate[0] == 0 && FirstSkill[0] == "Alternate") {
-                    CheckAlternateActivate(FirstSec,FirstInterval,SecondSec,TmpSec);
-                    CheckAlternateActivate(FirstSec,FirstInterval,ThirdSec,TmpSec);
-                    CheckAlternateActivate(FirstSec,FirstInterval,FourthSec,TmpSec);
-                    CheckAlternateActivate(FirstSec,FirstInterval,FifthSec,TmpSec);
+                    CheckAlternateActivate(FirstSec,FirstInterval,SecondSec,TmpSec,SecondSkill[0]);
+                    CheckAlternateActivate(FirstSec,FirstInterval,ThirdSec,TmpSec,ThirdSkill[0]);
+                    CheckAlternateActivate(FirstSec,FirstInterval,FourthSec,TmpSec,FourthSkill[0]);
+                    CheckAlternateActivate(FirstSec,FirstInterval,FifthSec,TmpSec,FifthSkill[0]);
                     
                 }
                 if(SkillActivate[0]==1){SkillActivate[1] = 1;}
@@ -200,40 +200,40 @@ function calcCover(){
             if(SecondSec != "" && TmpSec >= SecondSec && Math.floor(TmpSec/SecondSec)*SecondSec <= TmpSec && Math.floor(TmpSec/SecondSec)*SecondSec+parseFloat(SecondInterval) >= TmpSec){
                 if(SecondSkill[0] != "Alternate"){SkillActivate[2] = 1;}
                 else if(SkillActivate[0] == 0) {
-                    CheckAlternateActivate(SecondSec,SecondInterval,FirstSec,TmpSec);
-                    CheckAlternateActivate(SecondSec,SecondInterval,ThirdSec,TmpSec);
-                    CheckAlternateActivate(SecondSec,SecondInterval,FourthSec,TmpSec);
-                    CheckAlternateActivate(SecondSec,SecondInterval,FifthSec,TmpSec);
+                    CheckAlternateActivate(SecondSec,SecondInterval,FirstSec,TmpSec,FirstSkill[0]);
+                    CheckAlternateActivate(SecondSec,SecondInterval,ThirdSec,TmpSec,ThirdSkill[0]);
+                    CheckAlternateActivate(SecondSec,SecondInterval,FourthSec,TmpSec,FourthSkill[0]);
+                    CheckAlternateActivate(SecondSec,SecondInterval,FifthSec,TmpSec,FifthSkill[0]);
                 }
                 if(SkillActivate[0]==1){SkillActivate[2] = 1;}
             }
             if(ThirdSec != "" && TmpSec >= ThirdSec && Math.floor(TmpSec/ThirdSec)*ThirdSec <= TmpSec && Math.floor(TmpSec/ThirdSec)*ThirdSec+parseFloat(ThirdInterval) >= TmpSec){
                 if(ThirdSkill[0] != "Alternate"){SkillActivate[3] = 1;}
                 else if(SkillActivate[0] == 0) {
-                    CheckAlternateActivate(ThirdSec,ThirdInterval,FirstSec,TmpSec);
-                    CheckAlternateActivate(ThirdSec,ThirdInterval,SecondSec,TmpSec);
-                    CheckAlternateActivate(ThirdSec,ThirdInterval,FourthSec,TmpSec);
-                    CheckAlternateActivate(ThirdSec,ThirdInterval,FifthSec,TmpSec);
+                    CheckAlternateActivate(ThirdSec,ThirdInterval,FirstSec,TmpSec,FirstSkill[0]);
+                    CheckAlternateActivate(ThirdSec,ThirdInterval,SecondSec,TmpSec,SecondSkill[0]);
+                    CheckAlternateActivate(ThirdSec,ThirdInterval,FourthSec,TmpSec,FourthSkill[0]);
+                    CheckAlternateActivate(ThirdSec,ThirdInterval,FifthSec,TmpSec,FifthSkill[0]);
                 }
                 if(SkillActivate[0]==1){SkillActivate[3] = 1;}
             }
             if(FourthSec != "" && TmpSec >= FourthSec && Math.floor(TmpSec/FourthSec)*FourthSec <= TmpSec && Math.floor(TmpSec/FourthSec)*FourthSec+parseFloat(FourthInterval) >= TmpSec){
                 if(FourthSkill[0] != "Alternate"){SkillActivate[4] = 1;}
                 else if(SkillActivate[0] == 0) {
-                    CheckAlternateActivate(FourthSec,FourthInterval,FirstSec,TmpSec);
-                    CheckAlternateActivate(FourthSec,FourthInterval,SecondSec,TmpSec);
-                    CheckAlternateActivate(FourthSec,FourthInterval,ThirdSec,TmpSec);
-                    CheckAlternateActivate(FourthSec,FourthInterval,FifthSec,TmpSec);
+                    CheckAlternateActivate(FourthSec,FourthInterval,FirstSec,TmpSec,FirstSkill[0]);
+                    CheckAlternateActivate(FourthSec,FourthInterval,SecondSec,TmpSec,SecondSkill[0]);
+                    CheckAlternateActivate(FourthSec,FourthInterval,ThirdSec,TmpSec,ThirdSkill[0]);
+                    CheckAlternateActivate(FourthSec,FourthInterval,FifthSec,TmpSec,FifthSkill[0]);
                 }
                 if(SkillActivate[0]==1){SkillActivate[4] = 1;}
             }
             if(FifthSec != "" && TmpSec >= FifthSec && Math.floor(TmpSec/FifthSec)*FifthSec <= TmpSec && Math.floor(TmpSec/FifthSec)*FifthSec+parseFloat(FifthInterval) >= TmpSec){
                 if(SkillActivate[0] == 1 ||FifthSkill[0] != "Alternate"){SkillActivate[5] = 1;}
                 else if(SkillActivate[0] == 0) {
-                    CheckAlternateActivate(FifthSec,FifthInterval,FirstSec,TmpSec);
-                    CheckAlternateActivate(FifthSec,FifthInterval,SecondSec,TmpSec);
-                    CheckAlternateActivate(FifthSec,FifthInterval,ThirdSec,TmpSec);
-                    CheckAlternateActivate(FifthSec,FifthInterval,FourthSec,TmpSec);
+                    CheckAlternateActivate(FifthSec,FifthInterval,FirstSec,TmpSec,FirstSkill[0]);
+                    CheckAlternateActivate(FifthSec,FifthInterval,SecondSec,TmpSec,SecondSkill[0]);
+                    CheckAlternateActivate(FifthSec,FifthInterval,ThirdSec,TmpSec,ThirdSkill[0]);
+                    CheckAlternateActivate(FifthSec,FifthInterval,FourthSec,TmpSec,FourthSkill[0]);
                 }
                 if(SkillActivate[0]==1){SkillActivate[5] = 1;}
             }
@@ -434,8 +434,8 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
     }
 }
 
-function CheckAlternateActivate(TargetSec,TargetInterval,sec,now){
-    if(sec <= now && now <= parseFloat(TargetSec) + parseFloat(TargetInterval)){SkillActivate[0]=1;}
+function CheckAlternateActivate(TargetSec,TargetInterval,sec,now,skillname){
+    if(sec <= now && now <= parseFloat(TargetSec) + parseFloat(TargetInterval) && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0]=1;}
 }
 
 function SetAlternate(){
