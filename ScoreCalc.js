@@ -162,7 +162,7 @@ function calcCover(){
     var FourthInterval = document.getElementById("FourthType").value;
     var FifthInterval = document.getElementById("FifthType").value;
 
-
+    SkillActivate = [0,0,0,0,0,0,0];
     TotalLife = document.getElementById("StartLife").value;
     MaxLife = TotalLife *2;
     if(document.getElementById("DoubleLife").value){
