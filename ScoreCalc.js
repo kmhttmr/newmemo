@@ -188,18 +188,17 @@ function calcCover(){
             //発動をチェック
             if(FirstSec != "" && TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
                 if(FirstSkill[0] != "Alternate"){SkillActivate[1] = 1;}
-                else if(SkillActivate[0] == 0 && FirstSkill[0] == "Alternate") {
+                if(SkillActivate[0] == 0 && FirstSkill[0] == "Alternate") {
                     CheckAlternateActivate(FirstSec,FirstInterval,SecondSec,TmpSec,SecondSkill[0]);
                     CheckAlternateActivate(FirstSec,FirstInterval,ThirdSec,TmpSec,ThirdSkill[0]);
                     CheckAlternateActivate(FirstSec,FirstInterval,FourthSec,TmpSec,FourthSkill[0]);
                     CheckAlternateActivate(FirstSec,FirstInterval,FifthSec,TmpSec,FifthSkill[0]);
-                    
                 }
                 if(SkillActivate[0]==1){SkillActivate[1] = 1;}
             }
             if(SecondSec != "" && TmpSec >= SecondSec && Math.floor(TmpSec/SecondSec)*SecondSec <= TmpSec && Math.floor(TmpSec/SecondSec)*SecondSec+parseFloat(SecondInterval) >= TmpSec){
                 if(SecondSkill[0] != "Alternate"){SkillActivate[2] = 1;}
-                else if(SkillActivate[0] == 0) {
+                if(SkillActivate[0] == 0 && SecondSkill[0] == "Alternate") {
                     CheckAlternateActivate(SecondSec,SecondInterval,FirstSec,TmpSec,FirstSkill[0]);
                     CheckAlternateActivate(SecondSec,SecondInterval,ThirdSec,TmpSec,ThirdSkill[0]);
                     CheckAlternateActivate(SecondSec,SecondInterval,FourthSec,TmpSec,FourthSkill[0]);
@@ -209,7 +208,7 @@ function calcCover(){
             }
             if(ThirdSec != "" && TmpSec >= ThirdSec && Math.floor(TmpSec/ThirdSec)*ThirdSec <= TmpSec && Math.floor(TmpSec/ThirdSec)*ThirdSec+parseFloat(ThirdInterval) >= TmpSec){
                 if(ThirdSkill[0] != "Alternate"){SkillActivate[3] = 1;}
-                else if(SkillActivate[0] == 0) {
+                if(SkillActivate[0] == 0 && ThirdSkill[0] == "Alternate") {
                     CheckAlternateActivate(ThirdSec,ThirdInterval,FirstSec,TmpSec,FirstSkill[0]);
                     CheckAlternateActivate(ThirdSec,ThirdInterval,SecondSec,TmpSec,SecondSkill[0]);
                     CheckAlternateActivate(ThirdSec,ThirdInterval,FourthSec,TmpSec,FourthSkill[0]);
@@ -219,7 +218,7 @@ function calcCover(){
             }
             if(FourthSec != "" && TmpSec >= FourthSec && Math.floor(TmpSec/FourthSec)*FourthSec <= TmpSec && Math.floor(TmpSec/FourthSec)*FourthSec+parseFloat(FourthInterval) >= TmpSec){
                 if(FourthSkill[0] != "Alternate"){SkillActivate[4] = 1;}
-                else if(SkillActivate[0] == 0) {
+                if(SkillActivate[0] == 0 && FourthSkill[0] == "Alternate") {
                     CheckAlternateActivate(FourthSec,FourthInterval,FirstSec,TmpSec,FirstSkill[0]);
                     CheckAlternateActivate(FourthSec,FourthInterval,SecondSec,TmpSec,SecondSkill[0]);
                     CheckAlternateActivate(FourthSec,FourthInterval,ThirdSec,TmpSec,ThirdSkill[0]);
@@ -229,7 +228,7 @@ function calcCover(){
             }
             if(FifthSec != "" && TmpSec >= FifthSec && Math.floor(TmpSec/FifthSec)*FifthSec <= TmpSec && Math.floor(TmpSec/FifthSec)*FifthSec+parseFloat(FifthInterval) >= TmpSec){
                 if(SkillActivate[0] == 1 ||FifthSkill[0] != "Alternate"){SkillActivate[5] = 1;}
-                else if(SkillActivate[0] == 0) {
+                if(SkillActivate[0] == 0 && FifthSkill[0] == "Alternate") {
                     CheckAlternateActivate(FifthSec,FifthInterval,FirstSec,TmpSec,FirstSkill[0]);
                     CheckAlternateActivate(FifthSec,FifthInterval,SecondSec,TmpSec,SecondSkill[0]);
                     CheckAlternateActivate(FifthSec,FifthInterval,ThirdSec,TmpSec,ThirdSkill[0]);
@@ -246,6 +245,7 @@ function calcCover(){
                 SetNormalRate();
             }
             TotalLife = TotalLife + TmpSocreRate[7] + TmpSocreRate[8];
+            if(TotalLife > MaxLife){TotalLife = MaxLife;}
             ComboRate_now = MSRateSetting((i+1)/(data.length),ComboRate);
             var ScoreUpRate = 1+(TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100))/100;
             var ComboUpRate = ComboUpRateSet();
@@ -435,7 +435,8 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
 }
 
 function CheckAlternateActivate(TargetSec,TargetInterval,sec,now,skillname){
-    if(sec <= now && now >= parseFloat(TargetSec) + parseFloat(TargetInterval) && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0]=1;}
+    if(sec == TargetSec && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0] = 1;}
+    if(sec <= now && now >= (parseFloat(TargetSec) + parseFloat(TargetInterval)) && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0]=1;}
 }
 
 function SetAlternate(){
