@@ -4,11 +4,11 @@ var SecondSkill = ["",0,0,0,0,0,0,0,0];
 var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
+var TmpSocreRate = ["",0,0,0,0,0,0,0,0];
 var TmpSec=0,TotalLife=0,MaxLife=0;
 var TotalScore=0;
-var ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
-var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
-var MaxScore = "<table><tr><td>理論値</td><td></td></tr></table>"
+var ActiveSkillHtml,InnerHTML;
+var MaxScore;
     
 var MusicLevel ={
     5:"1",
@@ -143,6 +143,7 @@ var SkillEffect = {
 
 function calcCover(){
     var beforeTime = 0;
+    var appeal = document.getElementById("Apeal").value;
     var music = document.getElementById("Master").value;
     if(document.getElementById("MasterPlus").value != ""){music = document.getElementById("MasterPlus").value;};
     FirstSkill = EffectSetting(document.getElementById("FirstSkill").value,SkillEffect);
@@ -166,12 +167,12 @@ function calcCover(){
     if(document.getElementById("DoubleLife").value){
         TotalLife = MaxLife;
     }
-
-    
-    var CoverCount = [0,0,0,0,0];
+    MaxScore = "<table><tr><td>理論値</td><td></td></tr></table>";
+    ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
+    InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
     $.ajaxSetup({ async: false }); 
     $.getJSON(music , function(data) {
-        alert(data.length);
+        var notes = data.length-1;
         for(var i = 0;i < data.length; i++){
             beforeTime = TmpSec;
             if(TmpSec != data[i]["sec"]){
@@ -203,9 +204,9 @@ function calcCover(){
             SetSparkle();
 
             if(document.getElementById("Resonance").value){
-
+                SetNormalScoreRate(notes);
             }else{
-                SetNomarlScoreRate();
+                SetNormalScoreRate(notes);
             }
 
 
@@ -223,8 +224,9 @@ function calcCover(){
                 ActiveSkillHtml = ActiveSkillHtml.replace("fourth","#FF00FF");
             }
             if(SkillActivate[5] ==1){
-                ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fifth","#00FFFF");
+                ActiveSkillHtml = ActiveSkillHtml.replace("fifth","#00FFFF");
             }
+            ActiveSkillHtml = ActiveSkillHtml.replace("score",).replace("combo",Skill)
         }
     });
         
@@ -236,8 +238,8 @@ function calcCover(){
     
 }
 
-function SetNomarlScoreRate(){
-
+function SetNormalScoreRate(notes){
+    
     return;
 }
 
