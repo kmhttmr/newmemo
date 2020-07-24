@@ -5,6 +5,7 @@ var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
 var TmpSec=0,TotalLife=0,MaxLife=0;
+var TotalScore=0;
 var ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 
 var MusicLevel ={
@@ -165,7 +166,7 @@ function calcCover(){
     }
 
     var InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
-
+    var MaxSocore = "<table><tr><td>理論値</td><td></td></tr></table>"
     
     var CoverCount = [0,0,0,0,0];
     $(function() {
@@ -174,7 +175,7 @@ function calcCover(){
                 beforeTime = TmpSec;
                 if(TmpSec != data[i]["sec"]){
                     ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
-                    ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
+                    ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\">&nbsp;</td><td bgcolor=\"second\">&nbsp;</td><td bgcolor=\"third\">&nbsp;</td><td bgcolor=\"fourth\">&nbsp;</td><td bgcolor=\"fifth\">&nbsp;</td><td>score</td><td>combo</td></tr>";
                     TmpSec = data[i]["sec"];
                     ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
                 }
@@ -203,7 +204,7 @@ function calcCover(){
                 if(document.getElementById("Resonance").value){
 
                 }else{
-
+                    SetNomarlScoreRate();
                 }
 
 
@@ -227,8 +228,9 @@ function calcCover(){
         });
         InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
   
-        document.getElementById("ResultTable").innerHTML = InnerHTML;
       });
+      document.getElementById("ResultTable").innerHTML = InnerHTML;
+      document.getElementById("CoverTable").innerHTML = InnerHTML;
     
 }
 
