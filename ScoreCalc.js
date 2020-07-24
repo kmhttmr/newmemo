@@ -173,7 +173,8 @@ function calcCover(){
             for(var i = 0;i < data.length; i++){
                 beforeTime = TmpSec;
                 if(TmpSec != data[i]["sec"]){
-                    ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","") +"<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
+                    ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
+                    ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\"></td><td bgcolor=\"second\"></td><td bgcolor=\"third\"></td><td bgcolor=\"fourth\"></td><td bgcolor=\"fifth\"></td><td>score</td><td>combo</td></tr>";
                     TmpSec = data[i]["sec"];
                     ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
                 }
