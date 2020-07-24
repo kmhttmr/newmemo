@@ -204,7 +204,7 @@ function calcCover(){
             CheckAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             SetSparkle();
-            if(document.getElementById("Resonance").value){
+            if(document.getElementById("Resonance").checked){
                 SetResonanceRate();
             }else{
                 SetNormalRate();
