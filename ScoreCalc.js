@@ -710,11 +710,13 @@ function MSRateSetting(keyName,effectList){
     var beforeRate = 0;
     if(keyName != ''){
         for(var key in effectList){
-            if(effectList[key] >= keyName){
-                rate = beforeRate;
+            if(beforeRate == 0){beforeRate = effectList[key];}
+            else if(effectList[key] >= keyName){
                 break;
             }else{beforeRate = effectList[key];}
         }
     }
+    
+    rate = beforeRate;
     return rate;
 }
