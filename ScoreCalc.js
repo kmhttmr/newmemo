@@ -168,7 +168,7 @@ function calcCover(){
     if(document.getElementById("DoubleLife").value){
         TotalLife = MaxLife;
     }
-    
+    TotalScore = 0;
     SetMotif(apeal);
     MaxScore = "<table><tr><td>理論値</td><td>Score</td></tr></table>";
     ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
