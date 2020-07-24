@@ -4,7 +4,7 @@ var SecondSkill = ["",0,0,0,0,0,0,0,0];
 var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
-var TmpSocreRate = ["",0,0,0,0,0,0,0,0];
+var TmpSocreRate = [0,0,0,0,0,0,0];
 var TmpSec=0,TotalLife=0,MaxLife=0;
 var TotalScore=0;
 var ActiveSkillHtml,InnerHTML;
@@ -162,12 +162,15 @@ function calcCover(){
     var FourthInterval = document.getElementById("FourthType").value;
     var FifthInterval = document.getElementById("FifthType").value;
 
+
     TotalLife = document.getElementById("StartLife").value;
     MaxLife = TotalLife *2;
     if(document.getElementById("DoubleLife").value){
         TotalLife = MaxLife;
     }
-    MaxScore = "<table><tr><td>理論値</td><td></td></tr></table>";
+    
+    SetMotif(apeal);
+    MaxScore = "<table><tr><td>理論値</td><td>Score</td></tr></table>";
     ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
     InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
     $.ajaxSetup({ async: false }); 
@@ -198,18 +201,19 @@ function calcCover(){
             if(TmpSec >= FifthSec && Math.floor(TmpSec/FifthSec)*FifthSec <= TmpSec && Math.floor(TmpSec/FifthSec)*FifthSec+parseFloat(FifthInterval) >= TmpSec){
                 SkillActivate[5] = 1;
             }
-
             CheckAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             SetSparkle();
-
             if(document.getElementById("Resonance").value){
-                SetNormalScoreRate();
+                SetResonanceRate();
             }else{
-                SetNormalScoreRate();
+                SetNormalRate();
             }
-
-
+            TotalLife = ToTalLife + TmpSocreRate[7] + TmpSocreRate[8];
+            ComboRate_now = MSRateSetting((i+1)/(data.Length-1),ComboRate);
+ 
+            TotalScore = TotalScore + (baseScore*(TmpSocreRate[data[i]["type"]]*(1+TmpSocreRate[6]/100))*(TmpSocreRate[5]*(1+TmpSocreRate[6]/100)));
+            
 
             if(SkillActivate[1] ==1){
                 ActiveSkillHtml = ActiveSkillHtml.replace("first","#FF0000");
@@ -226,7 +230,7 @@ function calcCover(){
             if(SkillActivate[5] ==1){
                 ActiveSkillHtml = ActiveSkillHtml.replace("fifth","#00FFFF");
             }
-            ActiveSkillHtml = ActiveSkillHtml.replace("score",).replace("combo",Skill)
+            ActiveSkillHtml = ActiveSkillHtml.replace("score",TmpSocreRate[data[i]["type"]]).replace("combo",TmpSocreRate[5]);
         }
     });
         
@@ -234,36 +238,124 @@ function calcCover(){
     InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
 
     document.getElementById("ResultTable").innerHTML = InnerHTML;
-    document.getElementById("CoverTable").innerHTML = MaxScore;
+    document.getElementById("CoverTable").innerHTML = MaxScore.replace("Score",TotalScore);
     
 }
 
-function SetNormalScoreRate(apeal,notes){
+function SetResonanceRate(){}
+
+function SetNormalRate(){
+    TmpSocreRate = [0,0,0,0,0,0,0,0,0];
+    if(SkillActivate[1]==1){
+        if(TmpSocreRate[1] < FirstSkill[1]){TmpSocreRate[1] = FirstSkill[1];}
+        if(TmpSocreRate[2] < FirstSkill[2]){TmpSocreRate[2] = FirstSkill[2];}
+        if(TmpSocreRate[3] < FirstSkill[3]){TmpSocreRate[3] = FirstSkill[3];}
+        if(TmpSocreRate[4] < FirstSkill[4]){TmpSocreRate[4] = FirstSkill[4];}
+        if(TmpSocreRate[6] < FirstSkill[6]){TmpSocreRate[6] = FirstSkill[6];}
+        if(TmpSocreRate[7] < FirstSkill[7]){TmpSocreRate[7] = FirstSkill[7];}
+        if(TmpSocreRate[8] < FirstSkill[8]){TmpSocreRate[8] = FirstSkill[8];}
+        if(TmpSocreRate[5] == 0 && FirstSkill[0]== "Alternate"){TmpSocreRate[5] = FirstSkill[5];}
+        else if(FirstSkill[5] > 0){TmpSocreRate[5] = FirstSkill[5];}
+    }
+
+    if(SkillActivate[2]==1){
+        if(TmpSocreRate[1] < SecondSkill[1]){TmpSocreRate[1] = SecondSkill[1];}
+        if(TmpSocreRate[2] < SecondSkill[2]){TmpSocreRate[2] = SecondSkill[2];}
+        if(TmpSocreRate[3] < SecondSkill[3]){TmpSocreRate[3] = SecondSkill[3];}
+        if(TmpSocreRate[4] < SecondSkill[4]){TmpSocreRate[4] = SecondSkill[4];}
+        if(TmpSocreRate[6] < SecondSkill[6]){TmpSocreRate[6] = SecondSkill[6];}
+        if(TmpSocreRate[7] < SecondSkill[7]){TmpSocreRate[7] = SecondSkill[7];}
+        if(TmpSocreRate[8] < SecondSkill[8]){TmpSocreRate[8] = SecondSkill[8];}
+        if(TmpSocreRate[5] == 0 && SecondSkill[0]== "Alternate"){TmpSocreRate[5] = SecondSkill[5];}
+        else if(SecondSkill[5] > 0){TmpSocreRate[5] = SecondSkill[5];}
+    }
+    if(SkillActivate[3]==1){
+        if(TmpSocreRate[1] < ThirdSkill[1]){TmpSocreRate[1] = ThirdSkill[1];}
+        if(TmpSocreRate[2] < ThirdSkill[2]){TmpSocreRate[2] = ThirdSkill[2];}
+        if(TmpSocreRate[3] < ThirdSkill[3]){TmpSocreRate[3] = ThirdSkill[3];}
+        if(TmpSocreRate[4] < ThirdSkill[4]){TmpSocreRate[4] = ThirdSkill[4];}
+        if(TmpSocreRate[6] < ThirdSkill[6]){TmpSocreRate[6] = ThirdSkill[6];}
+        if(TmpSocreRate[7] < ThirdSkill[7]){TmpSocreRate[7] = ThirdSkill[7];}
+        if(TmpSocreRate[8] < ThirdSkill[8]){TmpSocreRate[8] = ThirdSkill[8];}
+        if(TmpSocreRate[5] == 0 && ThirdSkill[0]== "Alternate"){TmpSocreRate[5] = ThirdSkill[5];}
+        else if(ThirdSkill[5] > 0){TmpSocreRate[5] = ThirdSkill[5];}
+    }
+    if(SkillActivate[4]==1){
+        if(TmpSocreRate[1] < FourthSkill[1]){TmpSocreRate[1] = FourthSkill[1];}
+        if(TmpSocreRate[2] < FourthSkill[2]){TmpSocreRate[2] = FourthSkill[2];}
+        if(TmpSocreRate[3] < FourthSkill[3]){TmpSocreRate[3] = FourthSkill[3];}
+        if(TmpSocreRate[4] < FourthSkill[4]){TmpSocreRate[4] = FourthSkill[4];}
+        if(TmpSocreRate[6] < FourthSkill[6]){TmpSocreRate[6] = FourthSkill[6];}
+        if(TmpSocreRate[7] < FourthSkill[7]){TmpSocreRate[7] = FourthSkill[7];}
+        if(TmpSocreRate[8] < FourthSkill[8]){TmpSocreRate[8] = FourthSkill[8];}
+        if(TmpSocreRate[5] == 0 && FourthSkill[0]== "Alternate"){TmpSocreRate[5] = FourthSkill[5];}
+        else if(FourthSkill[5] > 0){TmpSocreRate[5] = FourthSkill[5];}
+    }
+    if(SkillActivate[5]==1){
+        if(TmpSocreRate[1] < FifthSkill[1]){TmpSocreRate[1] = FifthSkill[1];}
+        if(TmpSocreRate[2] < FifthSkill[2]){TmpSocreRate[2] = FifthSkill[2];}
+        if(TmpSocreRate[3] < FifthSkill[3]){TmpSocreRate[3] = FifthSkill[3];}
+        if(TmpSocreRate[4] < FifthSkill[4]){TmpSocreRate[4] = FifthSkill[4];}
+        if(TmpSocreRate[6] < FifthSkill[6]){TmpSocreRate[6] = FifthSkill[6];}
+        if(TmpSocreRate[7] < FifthSkill[7]){TmpSocreRate[7] = FifthSkill[7];}
+        if(TmpSocreRate[8] < FifthSkill[8]){TmpSocreRate[8] = FifthSkill[8];}
+        if(TmpSocreRate[5] == 0 && FifthSkill[0]== "Alternate"){TmpSocreRate[5] = FifthSkill[5];}
+        else if(FifthSkill[5] > 0){TmpSocreRate[5] = FifthSkill[5];}
+    }
     
-    return;
 }
 
-
+function SetMotif(apeal){
+    var rate =MSRateSetting(apeal,Motif);
+    if(FirstSkill[0]=="Motif"){
+        FirstSkill[1] = rate;
+        FirstSkill[2] = rate;
+        FirstSkill[3] = rate;
+        FirstSkill[4] = rate;
+    }
+    if(SecondSkill[0]=="Motif"){
+        SecondSkill[1] =rate;
+        SecondSkill[2] =rate;
+        SecondSkill[3] =rate;
+        SecondSkill[4] =rate;
+    }
+    if(ThirdSkill[0]=="Motif"){
+        ThirdSkill[1] =rate;
+        ThirdSkill[2] =rate;
+        ThirdSkill[3] =rate;
+        ThirdSkill[4] =rate;
+    }
+    if(FourthSkill[0]=="Motif"){
+        FourthSkill[1] =rate;
+        FourthSkill[2] =rate;
+        FourthSkill[3] =rate;
+        FourthSkill[4] =rate;
+    }
+    if(FifthSkill[0]=="Motif"){
+        FifthSkill[5] =rate;
+        FifthSkill[5] =rate;
+        FifthSkill[5] =rate;
+        FifthSkill[5] =rate;
+    }
+}
 
 function SetSparkle(){
     if(FirstSkill[0]=="LifeSparkle"){
-        FirstSkill[5] == SkillRateSetting(TotalLife,SparkleEffect);
+        FirstSkill[5] = MSRateSetting(TotalLife,SparkleEffect);
     }
     if(SecondSkill[0]=="LifeSparkle"){
-        SecondSkill[5] == SkillRateSetting(TotalLife,SparkleEffect);
+        SecondSkill[5] = MSRateSetting(TotalLife,SparkleEffect);
     }
     if(ThirdSkill[0]=="LifeSparkle"){
-        ThirdSkill[5] == SkillRateSetting(TotalLife,SparkleEffect);
+        ThirdSkill[5] = MSRateSetting(TotalLife,SparkleEffect);
     }
     if(FourthSkill[0]=="LifeSparkle"){
-        FourthSkill[5] == SkillRateSetting(TotalLife,SparkleEffect);
+        FourthSkill[5] = MSRateSetting(TotalLife,SparkleEffect);
     }
     if(FifthSkill[0]=="LifeSparkle"){
-        FifthSkill[5] == SkillRateSetting(TotalLife,SparkleEffect);
+        FifthSkill[5] = MSRateSetting(TotalLife,SparkleEffect);
     }
 }
-
-
 
 function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
     if(sec == beforeTime){return;}
@@ -293,8 +385,6 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
         }
     }
 }
-
-
 
 function CheckAlternate(){
     if(FirstSkill[0] != "Alternate" && SecondSkill[0] != "Alternate" && ThirdSkill[0] != "Alternate" && FourthSkill[0] != "Alternate" && FifthSkill[0] != "Alternate" ){return;}
@@ -595,7 +685,6 @@ function CheckAlternate(){
     }
 }
 
-
 function EffectSetting(keyName,effectList){
     var effect = ["",0,0,0,0,0,0,0,0];
     if(keyName != ''){
@@ -611,6 +700,20 @@ function SkillRateSetting(keyName,effectList){
     if(keyName != ''){
         for(var key in effectList){
             if(key == keyName){rate = effectList[key];break;}
+        }
+    }
+    return rate;
+}
+
+function MSRateSetting(keyName,effectList){
+    var rate;
+    var beforeRate = 0;
+    if(keyName != ''){
+        for(var key in effectList){
+            if(effectList[key] >= keyName){
+                rate = beforeRate;
+                break;
+            }else{beforeRate = effectList[key];}
         }
     }
     return rate;
