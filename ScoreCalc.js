@@ -360,27 +360,27 @@ function SetSparkle(){
 function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
     if(sec == beforeTime){return;}
     if(SkillActivate[1] == 1 && FirstSkill[0]== "OverLoad"){
-        if(beforeTime <= parseInd(sec/firstsec)*firstsec && parseInd(sec/firstsec)*firstsec <= sec){
+        if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(firstsec,OverLoadRate);
         }
     }
     if(SkillActivate[1] == 1 && SecondSkill[0]== "OverLoad"){
-        if(beforeTime <= parseInd(sec/secondsec)*secondsec && parseInd(sec/secondsec)*secondsec <= sec){
+        if(beforeTime <= parseInt(sec/secondsec)*secondsec && parseInt(sec/secondsec)*secondsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(secondsec,OverLoadRate);
         }
     }
     if(SkillActivate[1] == 1 && ThirdSkill[0]== "OverLoad"){
-        if(beforeTime <= parseInd(sec/thirdsec)*thirdsec && parseInd(sec/thirdsec)*thirdsec <= sec){
+        if(beforeTime <= parseInt(sec/thirdsec)*thirdsec && parseInt(sec/thirdsec)*thirdsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(thirdsec,OverLoadRate);
         }
     }
     if(SkillActivate[1] == 1 && FourthSkill[0]== "OverLoad"){
-        if(beforeTime <= parseInd(sec/fourthsec)*fourthsec && parseInd(sec/fourthsec)*fourthsec <= sec){
+        if(beforeTime <= parseInt(sec/fourthsec)*fourthsec && parseInt(sec/fourthsec)*fourthsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(fourthsec,OverLoadRate);
         }
     }
     if(SkillActivate[1] == 1 && FifthSkill[0]== "OverLoad"){
-        if(beforeTime <= parseInd(sec/fifthsec)*fifthsec && parseInd(sec/fifthsec)*fifthsec <= sec){
+        if(beforeTime <= parseInt(sec/fifthsec)*fifthsec && parseInt(sec/fifthsec)*fifthsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(fifthsec,OverLoadRate);
         }
     }
