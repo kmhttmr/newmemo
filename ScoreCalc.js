@@ -169,69 +169,70 @@ function calcCover(){
 
     
     var CoverCount = [0,0,0,0,0];
-    $(function() {
-       $.getJSON(music , function(data) {
-           alert(data.length);
-            for(var i = 0;i < data.length; i++){
-                beforeTime = TmpSec;
-                if(TmpSec != data[i]["sec"]){
-                    ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
-                    ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\">&nbsp;</td><td bgcolor=\"second\">&nbsp;</td><td bgcolor=\"third\">&nbsp;</td><td bgcolor=\"fourth\">&nbsp;</td><td bgcolor=\"fifth\">&nbsp;</td><td>score</td><td>combo</td></tr>";
-                    TmpSec = data[i]["sec"];
-                    ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
-                }
-                SkillActivate = [SkillActivate[0],0,0,0,0,0,0];
-                //発動をチェック
-                if(TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
-                    SkillActivate[1] = 1;
-                }
-                if(TmpSec >= SecondSec && Math.floor(TmpSec/SecondSec)*SecondSec <= TmpSec && Math.floor(TmpSec/SecondSec)*SecondSec+parseFloat(SecondInterval) >= TmpSec){
-                    SkillActivate[2] = 1;
-                }
-                if(TmpSec >= ThirdSec && Math.floor(TmpSec/ThirdSec)*ThirdSec <= TmpSec && Math.floor(TmpSec/ThirdSec)*ThirdSec+parseFloat(ThirdInterval) >= TmpSec){
-                    SkillActivate[3] = 1;
-                }
-                if(TmpSec >= FourthSec && Math.floor(TmpSec/FourthSec)*FourthSec <= TmpSec && Math.floor(TmpSec/FourthSec)*FourthSec+parseFloat(FourthInterval) >= TmpSec){
-                    SkillActivate[4] = 1;
-                }
-                if(TmpSec >= FifthSec && Math.floor(TmpSec/FifthSec)*FifthSec <= TmpSec && Math.floor(TmpSec/FifthSec)*FifthSec+parseFloat(FifthInterval) >= TmpSec){
-                    SkillActivate[5] = 1;
-                }
-
-                CheckAlternate();
-                CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
-                SetSparkle();
-
-                if(document.getElementById("Resonance").value){
-
-                }else{
-                    SetNomarlScoreRate();
-                }
-
-
-
-                if(SkillActivate[1] ==1){
-                    ActiveSkillHtml = ActiveSkillHtml.replace("first","#FF0000");
-                }
-                if(SkillActivate[2] ==1){
-                    ActiveSkillHtml = ActiveSkillHtml.replace("second","#00FF00");
-                }
-                if(SkillActivate[3] ==1){
-                    ActiveSkillHtml = ActiveSkillHtml.replace("third","#0000FF");
-                }
-                if(SkillActivate[4] ==1){
-                    ActiveSkillHtml = ActiveSkillHtml.replace("fourth","#FF00FF");
-                }
-                if(SkillActivate[5] ==1){
-                    ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fifth","#00FFFF");
-                }
+    $.ajaxSetup({ async: false }); 
+    $.getJSON(music , function(data) {
+        alert(data.length);
+        for(var i = 0;i < data.length; i++){
+            beforeTime = TmpSec;
+            if(TmpSec != data[i]["sec"]){
+                ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
+                ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\">&nbsp;</td><td bgcolor=\"second\">&nbsp;</td><td bgcolor=\"third\">&nbsp;</td><td bgcolor=\"fourth\">&nbsp;</td><td bgcolor=\"fifth\">&nbsp;</td><td>score</td><td>combo</td></tr>";
+                TmpSec = data[i]["sec"];
+                ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
             }
-        });
-        InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
-  
-      });
-      document.getElementById("ResultTable").innerHTML = InnerHTML;
-      document.getElementById("CoverTable").innerHTML = MaxScore;
+            SkillActivate = [SkillActivate[0],0,0,0,0,0,0];
+            //発動をチェック
+            if(TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
+                SkillActivate[1] = 1;
+            }
+            if(TmpSec >= SecondSec && Math.floor(TmpSec/SecondSec)*SecondSec <= TmpSec && Math.floor(TmpSec/SecondSec)*SecondSec+parseFloat(SecondInterval) >= TmpSec){
+                SkillActivate[2] = 1;
+            }
+            if(TmpSec >= ThirdSec && Math.floor(TmpSec/ThirdSec)*ThirdSec <= TmpSec && Math.floor(TmpSec/ThirdSec)*ThirdSec+parseFloat(ThirdInterval) >= TmpSec){
+                SkillActivate[3] = 1;
+            }
+            if(TmpSec >= FourthSec && Math.floor(TmpSec/FourthSec)*FourthSec <= TmpSec && Math.floor(TmpSec/FourthSec)*FourthSec+parseFloat(FourthInterval) >= TmpSec){
+                SkillActivate[4] = 1;
+            }
+            if(TmpSec >= FifthSec && Math.floor(TmpSec/FifthSec)*FifthSec <= TmpSec && Math.floor(TmpSec/FifthSec)*FifthSec+parseFloat(FifthInterval) >= TmpSec){
+                SkillActivate[5] = 1;
+            }
+
+            CheckAlternate();
+            CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
+            SetSparkle();
+
+            if(document.getElementById("Resonance").value){
+
+            }else{
+                SetNomarlScoreRate();
+            }
+
+
+
+            if(SkillActivate[1] ==1){
+                ActiveSkillHtml = ActiveSkillHtml.replace("first","#FF0000");
+            }
+            if(SkillActivate[2] ==1){
+                ActiveSkillHtml = ActiveSkillHtml.replace("second","#00FF00");
+            }
+            if(SkillActivate[3] ==1){
+                ActiveSkillHtml = ActiveSkillHtml.replace("third","#0000FF");
+            }
+            if(SkillActivate[4] ==1){
+                ActiveSkillHtml = ActiveSkillHtml.replace("fourth","#FF00FF");
+            }
+            if(SkillActivate[5] ==1){
+                ActiveSkillSplitHtml = ActiveSkillSplitHtml.replace("fifth","#00FFFF");
+            }
+        }
+    });
+        
+    $.ajaxSetup({ async: true }); 
+    InnerHTML = InnerHTML + ActiveSkillHtml + "</table>";
+
+    document.getElementById("ResultTable").innerHTML = InnerHTML;
+    document.getElementById("CoverTable").innerHTML = MaxScore;
     
 }
 
