@@ -143,7 +143,7 @@ var SkillEffect = {
 
 function calcCover(){
     var beforeTime = 0;
-    var appeal = document.getElementById("Apeal").value;
+    var apeal = document.getElementById("Apeal").value;
     var music = document.getElementById("Master").value;
     if(document.getElementById("MasterPlus").value != ""){music = document.getElementById("MasterPlus").value;};
     FirstSkill = EffectSetting(document.getElementById("FirstSkill").value,SkillEffect);
@@ -172,7 +172,7 @@ function calcCover(){
     InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
     $.ajaxSetup({ async: false }); 
     $.getJSON(music , function(data) {
-        var notes = data.length-1;
+        var baseScore = apeal * SkillRateSetting(document.getElementById("Level").value,MusicLevel) /(data.length-1);
         for(var i = 0;i < data.length; i++){
             beforeTime = TmpSec;
             if(TmpSec != data[i]["sec"]){
@@ -204,9 +204,9 @@ function calcCover(){
             SetSparkle();
 
             if(document.getElementById("Resonance").value){
-                SetNormalScoreRate(notes);
+                SetNormalScoreRate();
             }else{
-                SetNormalScoreRate(notes);
+                SetNormalScoreRate();
             }
 
 
@@ -238,7 +238,7 @@ function calcCover(){
     
 }
 
-function SetNormalScoreRate(notes){
+function SetNormalScoreRate(apeal,notes){
     
     return;
 }
