@@ -5,7 +5,7 @@ var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
 var TmpSec=0,TotalLife=0,MaxLife=0;
-var ActiveSkillSplitHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
+var ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
 
 var MusicLevel ={
     5:"1",
@@ -202,7 +202,7 @@ function calcCover(){
                 if(document.getElementById("Resonance").value){
 
                 }else{
-                    
+
                 }
 
 
