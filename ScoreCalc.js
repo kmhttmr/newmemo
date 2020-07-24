@@ -267,7 +267,7 @@ function calcCover(){
             if(SkillActivate[5] ==1){
                 ActiveSkillHtml = ActiveSkillHtml.replace("fifth","#00FFFF");
             }
-            ActiveSkillHtml = ActiveSkillHtml.replace("score",TmpSocreRate[data[i]["type"]] * (1+TmpSocreRate[6]/100)).replace("combo",TmpSocreRate[5] * (1+TmpSocreRate[6]/100));
+            ActiveSkillHtml = ActiveSkillHtml.replace("score",100*(ScoreUpRate-1)).replace("combo",100*(ComboUpRate -1));
         }
     });
         
