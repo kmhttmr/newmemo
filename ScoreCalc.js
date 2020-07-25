@@ -760,17 +760,35 @@ function SkillRateSetting(keyName,effectList){
 }
 
 function MSRateSetting(keyName,effectList){
-    var rate;
+    var rate,i=0;
     var beforeRate = 0;
     if(keyName != ''){
         for(var key in effectList){
-            if(beforeRate == 0){beforeRate = effectList[key];}
+            if(i == 0){beforeRate = effectList[key];}
             else if(key >= keyName){
                 break;
             }else{beforeRate = effectList[key];}
+            i++;
         }
     }
     
     rate = beforeRate;
+    return rate;
+}
+
+function ComboRateSetting(now,notes,effectList){
+    var rate = 1.0;
+    var per;
+    if(keyName != ''){
+        for(var key in effectList){
+           per = notes * (key /100);
+           if(per > now){
+               break;
+           }else{
+            rate = effectList[key];
+           }
+        }
+    }
+    
     return rate;
 }
