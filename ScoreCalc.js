@@ -282,10 +282,13 @@ function calcCover(){
 function ComboUpRateSet(){
     var rate = 100;
     if(TmpSocreRate[5]<0){
-        rate =Math.round(rate + TmpSocreRate[5])/100;
+        rate = rate + parseInt(TmpScoreRate[5]);
+        rate =Math.ceil(rate);
     }else {
-        rate =Math.round(rate + TmpSocreRate[5])*(1+TmpSocreRate[6]/100)/100;
+        rate = rate + TmpScoreRate[5] * (1 + TmpScoreRate[6]/100);
+        rate =Math.ceil(rate);
     }
+    rate = rate/100;
     return rate;
 }
 
