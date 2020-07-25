@@ -247,7 +247,7 @@ function calcCover(){
             TotalLife = TotalLife + TmpScoreRate[7] + TmpScoreRate[8];
             if(TotalLife > MaxLife){TotalLife = MaxLife;}
             ComboRate_now = MSRateSetting(parseInt((i+1)/(data.length)*100),ComboRate);
-            var ScoreUpRate = Math.round(100+TmpScoreRate[data[i]["type"]] * (1+TmpScoreRate[6]/100))/100;
+            var ScoreUpRate = (100+Math.ceil(TmpScoreRate[data[i]["type"]] * (1+TmpScoreRate[6]/100)))/100;
             var ComboUpRate = ComboUpRateSet();
             TotalScore = TotalScore + Math.round(baseScore*ComboRate_now*ScoreUpRate * ComboUpRate);
             
@@ -282,9 +282,9 @@ function calcCover(){
 function ComboUpRateSet(){
     var rate = 100;
     if(TmpScoreRate[5]<0){
-        rate =Math.round(rate + TmpScoreRate[5])/100;
+        rate =Math.round(rate + TmpScoreRate[5]);
     }else {
-        rate =Math.round(rate + TmpScoreRate[5])*(1+TmpScoreRate[6]/100)/100;
+        rate =Math.round(rate + TmpScoreRate[5])*(1+TmpScoreRate[6]/100);
     }
     rate = rate/100;
     return rate;
