@@ -286,6 +286,7 @@ function ComboUpRateSet(){
     }else {
         rate =Math.round(rate + TmpScoreRate[5])*(1+TmpScoreRate[6]/100)/100;
     }
+    rate = rate/100;
     return rate;
 }
 
