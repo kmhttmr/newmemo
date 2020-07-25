@@ -282,9 +282,9 @@ function calcCover(){
 function ComboUpRateSet(){
     var rate = 100;
     if(TmpScoreRate[5]<0){
-        rate =Math.round(rate + TmpScoreRate[5]);
+        rate =rate + TmpScoreRate[5];
     }else {
-        rate =Math.round(rate + TmpScoreRate[5])*(1+TmpScoreRate[6]/100);
+        rate =rate + Math.ceil(TmpScoreRate[5]*(1+TmpScoreRate[6]/100));
     }
     rate = rate/100;
     return rate;
