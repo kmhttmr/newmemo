@@ -249,7 +249,7 @@ function calcCover(){
             ComboRate_now = ComboRateSetting(i+1,data.length,ComboRate);
             var ScoreUpRate = (100+Math.ceil(TmpScoreRate[data[i]["type"]] * (1+TmpScoreRate[6]/100)))/100;
             var ComboUpRate = ComboUpRateSet();
-            TotalScore = TotalScore + Math.round(baseScore*ComboRate_now*ScoreUpRate * ComboUpRate);
+            TotalScore = TotalScore + Math.round(baseScore * ComboRate_now * ScoreUpRate * ComboUpRate);
             
 
             if(SkillActivate[1] ==1){
@@ -267,7 +267,7 @@ function calcCover(){
             if(SkillActivate[5] ==1){
                 ActiveSkillHtml = ActiveSkillHtml.replace("fifth","#00FFFF");
             }
-            ActiveSkillHtml = ActiveSkillHtml.replace("score",ScoreUpRate).replace("combo",ComboUpRate).replace("life",ScoreUpRate*ComboUpRate);
+            ActiveSkillHtml = ActiveSkillHtml.replace("score",ScoreUpRate).replace("combo",ComboUpRate).replace("life",((100 * ScoreUpRate)*(100*ComboUpRate))/10000);
         }
     });
         
