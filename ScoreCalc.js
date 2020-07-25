@@ -172,7 +172,7 @@ function calcCover(){
     SetMotif(apeal);
     MaxScore = "<table><tr><td>理論値</td><td>Score</td></tr></table>";
     ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
-    InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th>";
+    InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th><th>Life</th>";
     $.ajaxSetup({ async: false }); 
     $.getJSON(music , function(data) {
         var baseScore = apeal * SkillRateSetting(document.getElementById("Level").value,MusicLevel) /(data.length);
@@ -180,7 +180,7 @@ function calcCover(){
             beforeTime = TmpSec;
             if(TmpSec != data[i]["sec"]){
                 ActiveSkillHtml = ActiveSkillHtml.replace("first","").replace("second","").replace("third","").replace("fourth","").replace("fifth","");
-                ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\">&nbsp;</td><td bgcolor=\"second\">&nbsp;</td><td bgcolor=\"third\">&nbsp;</td><td bgcolor=\"fourth\">&nbsp;</td><td bgcolor=\"fifth\">&nbsp;</td><td>score</td><td>combo</td></tr>";
+                ActiveSkillHtml = ActiveSkillHtml + "<tr><td>sec</td><td bgcolor=\"first\">&nbsp;</td><td bgcolor=\"second\">&nbsp;</td><td bgcolor=\"third\">&nbsp;</td><td bgcolor=\"fourth\">&nbsp;</td><td bgcolor=\"fifth\">&nbsp;</td><td>score</td><td>combo</td><td>life</td></tr>";
                 TmpSec = data[i]["sec"];
                 ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
             }
@@ -267,7 +267,7 @@ function calcCover(){
             if(SkillActivate[5] ==1){
                 ActiveSkillHtml = ActiveSkillHtml.replace("fifth","#00FFFF");
             }
-            ActiveSkillHtml = ActiveSkillHtml.replace("score",100*(ScoreUpRate-1)).replace("combo",100*(ComboUpRate -1));
+            ActiveSkillHtml = ActiveSkillHtml.replace("score",ScoreUpRate).replace("combo",ComboUpRate).replace("life",TotalLife);
         }
     });
         
