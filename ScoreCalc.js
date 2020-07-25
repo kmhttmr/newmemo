@@ -779,14 +779,12 @@ function MSRateSetting(keyName,effectList){
 function ComboRateSetting(now,notes,effectList){
     var rate = 1.0;
     var per;
-    if(keyName != ''){
-        for(var key in effectList){
-           per = notes * (key /100);
-           if(per > now){
-               break;
-           }else{
-            rate = effectList[key];
-           }
+    for(var key in effectList){
+        per = notes * (key /100);
+        if(per > now){
+            break;
+        }else{
+        rate = effectList[key];
         }
     }
     
