@@ -292,7 +292,66 @@ function ComboUpRateSet(){
 }
 
 
-function SetResonanceRate(){}
+function SetResonanceRate(){
+    alert("未実装だぞ☆");
+    TmpScoreRate = [0,0,0,0,0,0,0,0,0];
+    if(SkillActivate[1]==1){
+        TmpScoreRate[1] = TmpScoreRate[1] + FirstSkill[1];
+        TmpScoreRate[2] = TmpScoreRate[2] + FirstSkill[2];
+        TmpScoreRate[3] = TmpScoreRate[3] + FirstSkill[3];
+        TmpScoreRate[4] = TmpScoreRate[4] + FirstSkill[4];
+        TmpScoreRate[6] = TmpScoreRate[6] + FirstSkill[6];
+        TmpScoreRate[7] = TmpScoreRate[7] + FirstSkill[7];
+        if(TmpScoreRate[8] < FirstSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FirstSkill[8];}
+        if(SkillActivate[0] == 1 && FirstSkill[0]== "Alternate"){TmpScoreRate[5] = TmpScoreRate[5] + FirstSkill[5];}
+        else {TmpScoreRate[5] = TmpScoreRate[5] + FirstSkill[5];}
+    }
+
+    if(SkillActivate[2]==1){
+        TmpScoreRate[1] = TmpScoreRate[1] + SecondSkill[1];
+        TmpScoreRate[2] = TmpScoreRate[2] + SecondSkill[2];
+        TmpScoreRate[3] = TmpScoreRate[3] + SecondSkill[3];
+        TmpScoreRate[4] = TmpScoreRate[4] + SecondSkill[4];
+        TmpScoreRate[6] = TmpScoreRate[6] + SecondSkill[6];
+        TmpScoreRate[7] = TmpScoreRate[7] + SecondSkill[7];
+        if(TmpScoreRate[8] < SecondSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = SecondSkill[8];}
+        if(SkillActivate[0] == 1 && SecondSkill[0]== "Alternate"){TmpScoreRate[5] = TmpScoreRate[5] + SecondSkill[5];}
+        else {TmpScoreRate[5] = TmpScoreRate[5] + SecondSkill[5];}
+    }
+    if(SkillActivate[3]==1){
+        TmpScoreRate[1] = TmpScoreRate[1] + ThirdSkill[1];
+        TmpScoreRate[2] = TmpScoreRate[2] + ThirdSkill[2];
+        TmpScoreRate[3] = TmpScoreRate[3] + ThirdSkill[3];
+        TmpScoreRate[4] = TmpScoreRate[4] + ThirdSkill[4];
+        TmpScoreRate[6] = TmpScoreRate[6] + ThirdSkill[6];
+        TmpScoreRate[7] = TmpScoreRate[7] + ThirdSkill[7];
+        if(TmpScoreRate[8] < ThirdSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = ThirdSkill[8];}
+        if(SkillActivate[0] == 1 && ThirdSkill[0]== "Alternate"){TmpScoreRate[5] = TmpScoreRate[5] + ThirdSkill[5];}
+        else {TmpScoreRate[5] =TmpScoreRate[5] +  ThirdSkill[5];}
+    }
+    if(SkillActivate[4]==1){
+        TmpScoreRate[1] = TmpScoreRate[1] + FourthSkill[1];
+        TmpScoreRate[2] = TmpScoreRate[2] + FourthSkill[2];
+        TmpScoreRate[3] = TmpScoreRate[3] + FourthSkill[3];
+        TmpScoreRate[4] = TmpScoreRate[4] + FourthSkill[4];
+        TmpScoreRate[6] = TmpScoreRate[6] + FourthSkill[6];
+        TmpScoreRate[7] = TmpScoreRate[7] + FourthSkill[7];
+        if(TmpScoreRate[8] < FourthSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FourthSkill[8];}
+        if(SkillActivate[0] == 1 && FourthSkill[0]== "Alternate"){TmpScoreRate[5] = TmpScoreRate[5] + FourthSkill[5];}
+        else {TmpScoreRate[5] = TmpScoreRate[5] + FourthSkill[5];}
+    }
+    if(SkillActivate[5]==1){
+        if(TmpScoreRate[1] < FifthSkill[1]){TmpScoreRate[1] = FifthSkill[1];}
+        if(TmpScoreRate[2] < FifthSkill[2]){TmpScoreRate[2] = FifthSkill[2];}
+        if(TmpScoreRate[3] < FifthSkill[3]){TmpScoreRate[3] = FifthSkill[3];}
+        if(TmpScoreRate[4] < FifthSkill[4]){TmpScoreRate[4] = FifthSkill[4];}
+        if(TmpScoreRate[6] < FifthSkill[6]){TmpScoreRate[6] = FifthSkill[6];}
+        if(TmpScoreRate[7] < FifthSkill[7]){TmpScoreRate[7] = FifthSkill[7];}
+        if(TmpScoreRate[8] < FifthSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FifthSkill[8];}
+        if(SkillActivate[0] == 1 && FifthSkill[0]== "Alternate"){TmpScoreRate[5] = TmpScoreRate[5] + FifthSkill[5];}
+        else {TmpScoreRate[5] = TmpScoreRate[5] + FifthSkill[5];}
+    }
+}
 
 function SetNormalRate(){
     TmpScoreRate = [0,0,0,0,0,0,0,0,0];
