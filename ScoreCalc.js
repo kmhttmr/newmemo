@@ -169,7 +169,7 @@ function calcCover(){
         TotalLife = MaxLife;
     }
     TotalScore = 0;
-    SetMotif(apeal);
+    SetMotif(document.getElementById("ResoApeal").value);
     MaxScore = "<table><tr><td>理論値</td><td>Score</td></tr></table>";
     ActiveSkillHtml="<tr><td>0</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>";
     InnerHTML = "<table><th style=\"width:50px;\">秒</th><th style=\"width:50px;\">1</th><th style=\"width:50px;\">2</th><th style=\"width:50px;\">3</th><th style=\"width:50px;\">4</th><th style=\"width:50px;\">5</th><th style=\"width:50px;\">ScoreUp</th><th style=\"width:50px;\">ComboUP</th><th>Life</th>";
