@@ -819,7 +819,7 @@ function MSRateSetting(keyName,effectList){
     if(keyName != ''){
         for(var key in effectList){
             if(i == 0){beforeRate = effectList[key];}
-            else if(key > keyName){
+            else if(parseInt(key) > parseInt(keyName)){
                 break;
             }else{beforeRate = effectList[key];}
             i++;
