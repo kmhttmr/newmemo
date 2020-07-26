@@ -238,6 +238,7 @@ function calcCover(){
             }
             SetAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
+            ActiveSkillHtml = ActiveSkillHtml..replace("life",TotalLife);
             SetSparkle();
             if(document.getElementById("Resonance").checked){
                 SetResonanceRate();
@@ -267,7 +268,7 @@ function calcCover(){
             if(SkillActivate[5] ==1){
                 ActiveSkillHtml = ActiveSkillHtml.replace("fifth","#00FFFF");
             }
-            ActiveSkillHtml = ActiveSkillHtml.replace("score",ScoreUpRate).replace("combo",ComboUpRate).replace("life",TotalLife);
+            ActiveSkillHtml = ActiveSkillHtml.replace("score",ScoreUpRate).replace("combo",ComboUpRate);
         }
     });
         
@@ -302,7 +303,7 @@ function SetNormalRate(){
         if(TmpScoreRate[4] < FirstSkill[4]){TmpScoreRate[4] = FirstSkill[4];}
         if(TmpScoreRate[6] < FirstSkill[6]){TmpScoreRate[6] = FirstSkill[6];}
         if(TmpScoreRate[7] < FirstSkill[7]){TmpScoreRate[7] = FirstSkill[7];}
-        if(TmpScoreRate[8] < FirstSkill[8]){TmpScoreRate[8] = FirstSkill[8];}
+        if(TmpScoreRate[8] < FirstSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FirstSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && FirstSkill[0]== "Alternate"){TmpScoreRate[5] = FirstSkill[5];}
         else if(FirstSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = FirstSkill[5];}
     }
@@ -314,7 +315,7 @@ function SetNormalRate(){
         if(TmpScoreRate[4] < SecondSkill[4]){TmpScoreRate[4] = SecondSkill[4];}
         if(TmpScoreRate[6] < SecondSkill[6]){TmpScoreRate[6] = SecondSkill[6];}
         if(TmpScoreRate[7] < SecondSkill[7]){TmpScoreRate[7] = SecondSkill[7];}
-        if(TmpScoreRate[8] < SecondSkill[8]){TmpScoreRate[8] = SecondSkill[8];}
+        if(TmpScoreRate[8] < SecondSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = SecondSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && SecondSkill[0]== "Alternate"){TmpScoreRate[5] = SecondSkill[5];}
         else if(SecondSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = SecondSkill[5];}
     }
@@ -325,7 +326,7 @@ function SetNormalRate(){
         if(TmpScoreRate[4] < ThirdSkill[4]){TmpScoreRate[4] = ThirdSkill[4];}
         if(TmpScoreRate[6] < ThirdSkill[6]){TmpScoreRate[6] = ThirdSkill[6];}
         if(TmpScoreRate[7] < ThirdSkill[7]){TmpScoreRate[7] = ThirdSkill[7];}
-        if(TmpScoreRate[8] < ThirdSkill[8]){TmpScoreRate[8] = ThirdSkill[8];}
+        if(TmpScoreRate[8] < ThirdSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = ThirdSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && ThirdSkill[0]== "Alternate"){TmpScoreRate[5] = ThirdSkill[5];}
         else if(ThirdSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = ThirdSkill[5];}
     }
@@ -336,7 +337,7 @@ function SetNormalRate(){
         if(TmpScoreRate[4] < FourthSkill[4]){TmpScoreRate[4] = FourthSkill[4];}
         if(TmpScoreRate[6] < FourthSkill[6]){TmpScoreRate[6] = FourthSkill[6];}
         if(TmpScoreRate[7] < FourthSkill[7]){TmpScoreRate[7] = FourthSkill[7];}
-        if(TmpScoreRate[8] < FourthSkill[8]){TmpScoreRate[8] = FourthSkill[8];}
+        if(TmpScoreRate[8] < FourthSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FourthSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && FourthSkill[0]== "Alternate"){TmpScoreRate[5] = FourthSkill[5];}
         else if(FourthSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = FourthSkill[5];}
     }
@@ -347,11 +348,10 @@ function SetNormalRate(){
         if(TmpScoreRate[4] < FifthSkill[4]){TmpScoreRate[4] = FifthSkill[4];}
         if(TmpScoreRate[6] < FifthSkill[6]){TmpScoreRate[6] = FifthSkill[6];}
         if(TmpScoreRate[7] < FifthSkill[7]){TmpScoreRate[7] = FifthSkill[7];}
-        if(TmpScoreRate[8] < FifthSkill[8]){TmpScoreRate[8] = FifthSkill[8];}
+        if(TmpScoreRate[8] < FifthSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FifthSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && FifthSkill[0]== "Alternate"){TmpScoreRate[5] = FifthSkill[5];}
         else if(FifthSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = FifthSkill[5];}
     }
-    
 }
 
 function SetMotif(apeal){
@@ -765,13 +765,12 @@ function MSRateSetting(keyName,effectList){
     if(keyName != ''){
         for(var key in effectList){
             if(i == 0){beforeRate = effectList[key];}
-            else if(key >= keyName){
+            else if(key > keyName){
                 break;
             }else{beforeRate = effectList[key];}
             i++;
         }
     }
-    
     rate = beforeRate;
     return rate;
 }
@@ -787,6 +786,5 @@ function ComboRateSetting(now,notes,effectList){
         rate = effectList[key];
         }
     }
-    
     return rate;
 }
