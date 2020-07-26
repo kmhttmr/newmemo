@@ -127,7 +127,7 @@ var SkillEffect = {
     LongAct:["LongAct",10,10,10,10,0,0,0,0],
     FrickAct:["FrickAct",10,30,10,10,0,0,0,0],
     SlideAct:["SlideAct",10,10,10,40,0,0,0,0],
-    Motif:["Motif",10,10,10,40,0,0,0,0],
+    Motif:["Motif",0,0,0,0,0,0,0,0],
     ComboBonus:["ComboBonus",0,0,0,0,18,0.0,0],
     Alround:["Alround",0,0,0,0,13,0,0,0],
     LifeSparkle:["LifeSparkle",0,0,0,0,0,0,0,0],
