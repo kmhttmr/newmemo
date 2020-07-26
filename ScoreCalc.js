@@ -244,7 +244,7 @@ function calcCover(){
             }else{
                 SetNormalRate();
             }
-            TotalLife = TotalLife + parseInt(TmpScoreRate[7]) + parseInt(TmpScoreRate[8]);
+            TotalLife = parseInt(TotalLife) + parseInt(TmpScoreRate[7]) + parseInt(TmpScoreRate[8]);
             if(TotalLife > MaxLife){TotalLife = MaxLife;}
             ComboRate_now = ComboRateSetting(i+1,data.length,ComboRate);
             var ScoreUpRate = (100+Math.ceil(TmpScoreRate[data[i]["type"]] * (1+TmpScoreRate[6]/100)))/100;
