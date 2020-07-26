@@ -238,7 +238,7 @@ function calcCover(){
             }
             SetAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
-            ActiveSkillHtml = ActiveSkillHtml..replace("life",TotalLife);
+            ActiveSkillHtml = ActiveSkillHtml.replace("life",TotalLife);
             SetSparkle();
             if(document.getElementById("Resonance").checked){
                 SetResonanceRate();
