@@ -305,7 +305,7 @@ function SetNormalRate(){
         if(TmpScoreRate[7] < FirstSkill[7]){TmpScoreRate[7] = FirstSkill[7];}
         if(TmpScoreRate[8] < FirstSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FirstSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && FirstSkill[0]== "Alternate"){TmpScoreRate[5] = FirstSkill[5];}
-        else if(FirstSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = FirstSkill[5];}
+        else if(FirstSkill[5] > TmpScoreRate[5] && FirstSkill[5] != 0){TmpScoreRate[5] = FirstSkill[5];}
     }
 
     if(SkillActivate[2]==1){
@@ -317,7 +317,7 @@ function SetNormalRate(){
         if(TmpScoreRate[7] < SecondSkill[7]){TmpScoreRate[7] = SecondSkill[7];}
         if(TmpScoreRate[8] < SecondSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = SecondSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && SecondSkill[0]== "Alternate"){TmpScoreRate[5] = SecondSkill[5];}
-        else if(SecondSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = SecondSkill[5];}
+        else if(SecondSkill[5] > TmpScoreRate[5] && SecondSkill[5] != 0){TmpScoreRate[5] = SecondSkill[5];}
     }
     if(SkillActivate[3]==1){
         if(TmpScoreRate[1] < ThirdSkill[1]){TmpScoreRate[1] = ThirdSkill[1];}
@@ -328,7 +328,7 @@ function SetNormalRate(){
         if(TmpScoreRate[7] < ThirdSkill[7]){TmpScoreRate[7] = ThirdSkill[7];}
         if(TmpScoreRate[8] < ThirdSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = ThirdSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && ThirdSkill[0]== "Alternate"){TmpScoreRate[5] = ThirdSkill[5];}
-        else if(ThirdSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = ThirdSkill[5];}
+        else if(ThirdSkill[5] > TmpScoreRate[5] && ThirdSkill[5] != 0){TmpScoreRate[5] = ThirdSkill[5];}
     }
     if(SkillActivate[4]==1){
         if(TmpScoreRate[1] < FourthSkill[1]){TmpScoreRate[1] = FourthSkill[1];}
@@ -339,7 +339,7 @@ function SetNormalRate(){
         if(TmpScoreRate[7] < FourthSkill[7]){TmpScoreRate[7] = FourthSkill[7];}
         if(TmpScoreRate[8] < FourthSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FourthSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && FourthSkill[0]== "Alternate"){TmpScoreRate[5] = FourthSkill[5];}
-        else if(FourthSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = FourthSkill[5];}
+        else if(FourthSkill[5] > TmpScoreRate[5] && FourthSkill[5] != 0){TmpScoreRate[5] = FourthSkill[5];}
     }
     if(SkillActivate[5]==1){
         if(TmpScoreRate[1] < FifthSkill[1]){TmpScoreRate[1] = FifthSkill[1];}
@@ -350,7 +350,7 @@ function SetNormalRate(){
         if(TmpScoreRate[7] < FifthSkill[7]){TmpScoreRate[7] = FifthSkill[7];}
         if(TmpScoreRate[8] < FifthSkill[8] && TmpScoreRate[7] > 0){TmpScoreRate[8] = FifthSkill[8];}
         if(SkillActivate[0] == 1 && TmpScoreRate[5] == 0 && FifthSkill[0]== "Alternate"){TmpScoreRate[5] = FifthSkill[5];}
-        else if(FifthSkill[5] > TmpScoreRate[5]){TmpScoreRate[5] = FifthSkill[5];}
+        else if(FifthSkill[5] > TmpScoreRate[5] && FifthSkill[5] != 0){TmpScoreRate[5] = FifthSkill[5];}
     }
 }
 
