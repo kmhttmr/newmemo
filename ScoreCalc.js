@@ -293,7 +293,6 @@ function ComboUpRateSet(){
 
 
 function SetResonanceRate(){
-    alert("未実装だぞ☆");
     TmpScoreRate = [0,0,0,0,0,0,0,0,0];
     if(SkillActivate[1]==1){
         TmpScoreRate[1] = TmpScoreRate[1] + FirstSkill[1];
