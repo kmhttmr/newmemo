@@ -5,6 +5,7 @@ var ThirdSkill = ["",0,0,0,0,0,0,0,0];
 var FourthSkill = ["",0,0,0,0,0,0,0,0];
 var FifthSkill = ["",0,0,0,0,0,0,0,0];
 var TmpScoreRate = [0,0,0,0,0,0,0];
+var Encore = ["",0,0,0,0,0,0,0,0];
 var TmpSec=0,TotalLife=0,MaxLife=0;
 var TotalScore=0;
 var ActiveSkillHtml,InnerHTML;
@@ -137,6 +138,7 @@ var SkillEffect = {
     LifeUp:["LifeUp",0,0,0,0,0,0,3,0],
     Alternate:["Alternate",0,0,0,0,-20,0,0,0],
     Cordinate:["Cordinate",10,10,10,10,15,0,0,0],
+    Encore:["Encore",0,0,0,0,0,0,0,0],
     SkillBoost:["SkillBoost",0,0,0,0,0,20,0,1],
     Unsamble:["Unsamble",0,0,0,0,0,50,0,0],
     Symphony:["Symphony",0,0,0,0,0,50,0,1]
@@ -186,6 +188,7 @@ function calcCover(){
                 ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
             }
             SkillActivate = [SkillActivate[0],0,0,0,0,0,0];
+            CheckEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             //発動をチェック
             if(FirstSec != "" && TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
                 if(FirstSkill[0] != "Alternate"){SkillActivate[1] = 1;}
@@ -239,6 +242,7 @@ function calcCover(){
             }
             SetAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
+            SetEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             ActiveSkillHtml = ActiveSkillHtml.replace("life",TotalLife);
             SetSparkle();
             if(document.getElementById("Resonance").checked){
@@ -291,7 +295,6 @@ function ComboUpRateSet(){
     rate = rate/100;
     return rate;
 }
-
 
 function SetResonanceRate(){
     TmpScoreRate = [0,0,0,0,0,0,0,0,0];
@@ -472,24 +475,82 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
             TotalLife = TotalLife - SkillRateSetting(firstsec,OverLoadRate);
         }
     }
-    if(SkillActivate[1] == 1 && SecondSkill[0]== "OverLoad"){
+    if(SkillActivate[2] == 1 && SecondSkill[0]== "OverLoad"){
         if(beforeTime <= parseInt(sec/secondsec)*secondsec && parseInt(sec/secondsec)*secondsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(secondsec,OverLoadRate);
         }
     }
-    if(SkillActivate[1] == 1 && ThirdSkill[0]== "OverLoad"){
+    if(SkillActivate[3] == 1 && ThirdSkill[0]== "OverLoad"){
         if(beforeTime <= parseInt(sec/thirdsec)*thirdsec && parseInt(sec/thirdsec)*thirdsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(thirdsec,OverLoadRate);
         }
     }
-    if(SkillActivate[1] == 1 && FourthSkill[0]== "OverLoad"){
+    if(SkillActivate[4] == 1 && FourthSkill[0]== "OverLoad"){
         if(beforeTime <= parseInt(sec/fourthsec)*fourthsec && parseInt(sec/fourthsec)*fourthsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(fourthsec,OverLoadRate);
         }
     }
-    if(SkillActivate[1] == 1 && FifthSkill[0]== "OverLoad"){
+    if(SkillActivate[5] == 1 && FifthSkill[0]== "OverLoad"){
         if(beforeTime <= parseInt(sec/fifthsec)*fifthsec && parseInt(sec/fifthsec)*fifthsec <= sec){
             TotalLife = TotalLife - SkillRateSetting(fifthsec,OverLoadRate);
+        }
+    }
+}
+
+function SetEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
+    if(sec == beforeTime){return;}
+    if(SkillActivate[1] == 1 && FirstSkill[0].indexOf("Encore") < 0){
+        if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
+            Encore = FirstSkill;
+        }
+    }
+    if(SkillActivate[2] == 1 && SecondSkill[0].indexOf("Encore") < 0){
+        if(beforeTime <= parseInt(sec/secondsec)*secondsec && parseInt(sec/secondsec)*secondsec <= sec){
+            Encore = SecondSkill;
+        }
+    }
+    if(SkillActivate[3] == 1 && ThirdSkill[0].indexOf("Encore") < 0){
+        if(beforeTime <= parseInt(sec/thirdsec)*thirdsec && parseInt(sec/thirdsec)*thirdsec <= sec){
+            Encore = ThirdSkill;
+        }
+    }
+    if(SkillActivate[4] == 1 && FourthSkill[0].indexOf("Encore") < 0){
+        if(beforeTime <= parseInt(sec/fourthsec)*fourthsec && parseInt(sec/fourthsec)*fourthsec <= sec){
+            Encore = FourthSkill;
+        }
+    }
+    if(SkillActivate[5] == 1 && FifthSkill[0].indexOf("Encore") < 0){
+        if(beforeTime <= parseInt(sec/fifthsec)*fifthsec && parseInt(sec/fifthsec)*fifthsec <= sec){
+            Encore = FifthSkill;
+        }
+    }
+}
+
+function CheckEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
+    if(sec == beforeTime){return;}
+    if(SkillActivate[1] == 1 && FirstSkill[0].indexOf("Encore") >= 0){
+        if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
+            FirstSkill = Encore;
+        }
+    }
+    if(SkillActivate[2] == 1 && SecondSkill[0].indexOf("Encore") >= 0){
+        if(beforeTime <= parseInt(sec/secondsec)*secondsec && parseInt(sec/secondsec)*secondsec <= sec){
+            SecondSkill = Encore;
+        }
+    }
+    if(SkillActivate[3] == 1 && ThirdSkill[0].indexOf("Encore") >= 0){
+        if(beforeTime <= parseInt(sec/thirdsec)*thirdsec && parseInt(sec/thirdsec)*thirdsec <= sec){
+            ThirdSkill = Encore;
+        }
+    }
+    if(SkillActivate[4] == 1 && FourthSkill[0].indexOf("Encore") >= 0){
+        if(beforeTime <= parseInt(sec/fourthsec)*fourthsec && parseInt(sec/fourthsec)*fourthsec <= sec){
+            FourthSkill = Encore;
+        }
+    }
+    if(SkillActivate[5] == 1 && FifthSkill[0].indexOf("Encore") >= 0){
+        if(beforeTime <= parseInt(sec/fifthsec)*fifthsec && parseInt(sec/fifthsec)*fifthsec <= sec){
+            FifthSkill = Encore;
         }
     }
 }
