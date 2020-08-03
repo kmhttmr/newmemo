@@ -188,7 +188,6 @@ function calcCover(){
                 ActiveSkillHtml = ActiveSkillHtml.replace("sec",TmpSec);
             }
             SkillActivate = [SkillActivate[0],0,0,0,0,0,0];
-            CheckEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             //発動をチェック
             if(FirstSec != "" && TmpSec >= FirstSec && Math.floor(TmpSec/FirstSec)*FirstSec <= TmpSec && Math.floor(TmpSec/FirstSec)*FirstSec+parseFloat(FirstInterval) >= TmpSec){
                 if(FirstSkill[0] != "Alternate"){SkillActivate[1] = 1;}
@@ -240,6 +239,7 @@ function calcCover(){
                 }
                 if(SkillActivate[0]==1){SkillActivate[5] = 1;}
             }
+            CheckEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             SetAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             SetEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
