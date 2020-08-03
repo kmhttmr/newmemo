@@ -610,30 +610,106 @@ function SetEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
 }
 
 function CheckEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
+    let tmp;
     if(sec == beforeTime){return;}
     if(SkillActivate[1] == 1 && FirstSkill[0].indexOf("Encore") >= 0){
         if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
-            FirstSkill = Encore;
+            tmp = Encore[1];
+            FirstSkill[1] = tmp;
+            tmp = Encore[2];
+            FirstSkill[2] = tmp;
+            tmp = Encore[3];
+            FirstSkill[3] = tmp;
+            tmp = Encore[4];
+            FirstSkill[4] = tmp;
+            tmp = Encore[5];
+            FirstSkill[5] = tmp;
+            tmp = Encore[6];
+            FirstSkill[6] = tmp;
+            tmp = Encore[7];
+            FirstSkill[7] = tmp;
+            tmp = Encore[8];
+            FirstSkill[8] = tmp;
         }
     }
     if(SkillActivate[2] == 1 && SecondSkill[0].indexOf("Encore") >= 0){
         if(beforeTime <= parseInt(sec/secondsec)*secondsec && parseInt(sec/secondsec)*secondsec <= sec){
-            SecondSkill = Encore;
+            tmp = Encore[1];
+            SecondSkill[1] = tmp;
+            tmp = Encore[2];
+            SecondSkill[2] = tmp;
+            tmp = Encore[3];
+            SecondSkill[3] = tmp;
+            tmp = Encore[4];
+            SecondSkill[4] = tmp;
+            tmp = Encore[5];
+            SecondSkill[5] = tmp;
+            tmp = Encore[6];
+            SecondSkill[6] = tmp;
+            tmp = Encore[7];
+            SecondSkill[7] = tmp;
+            tmp = Encore[8];
+            SecondSkill[8] = tmp;
         }
     }
     if(SkillActivate[3] == 1 && ThirdSkill[0].indexOf("Encore") >= 0){
         if(beforeTime <= parseInt(sec/thirdsec)*thirdsec && parseInt(sec/thirdsec)*thirdsec <= sec){
-            ThirdSkill = Encore;
+            tmp = Encore[1];
+            ThirdSkill[1] = tmp;
+            tmp = Encore[2];
+            ThirdSkill[2] = tmp;
+            tmp = Encore[3];
+            ThirdSkill[3] = tmp;
+            tmp = Encore[4];
+            ThirdSkill[4] = tmp;
+            tmp = Encore[5];
+            ThirdSkill[5] = tmp;
+            tmp = Encore[6];
+            ThirdSkill[6] = tmp;
+            tmp = Encore[7];
+            ThirdSkill[7] = tmp;
+            tmp = Encore[8];
+            ThirdSkill[8] = tmp;
         }
     }
     if(SkillActivate[4] == 1 && FourthSkill[0].indexOf("Encore") >= 0){
         if(beforeTime <= parseInt(sec/fourthsec)*fourthsec && parseInt(sec/fourthsec)*fourthsec <= sec){
-            FourthSkill = Encore;
+            tmp = Encore[1];
+            FourthSkill[1] = tmp;
+            tmp = Encore[2];
+            FourthSkill[2] = tmp;
+            tmp = Encore[3];
+            FourthSkill[3] = tmp;
+            tmp = Encore[4];
+            FourthSkill[4] = tmp;
+            tmp = Encore[5];
+            FourthSkill[5] = tmp;
+            tmp = Encore[6];
+            FourthSkill[6] = tmp;
+            tmp = Encore[7];
+            FourthSkill[7] = tmp;
+            tmp = Encore[8];
+            FourthSkill[8] = tmp;
         }
     }
     if(SkillActivate[5] == 1 && FifthSkill[0].indexOf("Encore") >= 0){
         if(beforeTime <= parseInt(sec/fifthsec)*fifthsec && parseInt(sec/fifthsec)*fifthsec <= sec){
-            FifthSkill = Encore;
+            tmp = Encore[1];
+            FifthSkill[1] = tmp;
+            tmp = Encore[2];
+            FifthSkill[2] = tmp;
+            tmp = Encore[3];
+            FifthSkill[3] = tmp;
+            tmp = Encore[4];
+            FifthSkill[4] = tmp;
+            tmp = Encore[5];
+            FifthSkill[5] = tmp;
+            tmp = Encore[6];
+            FifthSkill[6] = tmp;
+            tmp = Encore[7];
+            FifthSkill[7] = tmp;
+            tmp = Encore[8];
+            FifthSkill[8] = tmp;
         }
     }
 }
