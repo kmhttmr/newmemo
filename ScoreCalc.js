@@ -502,26 +502,31 @@ function SetEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
     if(SkillActivate[1] == 1 && FirstSkill[0].indexOf("Encore") < 0){
         if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
             Encore = FirstSkill;
+            Encore[0] = "Encore";
         }
     }
     if(SkillActivate[2] == 1 && SecondSkill[0].indexOf("Encore") < 0){
         if(beforeTime <= parseInt(sec/secondsec)*secondsec && parseInt(sec/secondsec)*secondsec <= sec){
             Encore = SecondSkill;
+            Encore[0] = "Encore";
         }
     }
     if(SkillActivate[3] == 1 && ThirdSkill[0].indexOf("Encore") < 0){
         if(beforeTime <= parseInt(sec/thirdsec)*thirdsec && parseInt(sec/thirdsec)*thirdsec <= sec){
             Encore = ThirdSkill;
+            Encore[0] = "Encore";
         }
     }
     if(SkillActivate[4] == 1 && FourthSkill[0].indexOf("Encore") < 0){
         if(beforeTime <= parseInt(sec/fourthsec)*fourthsec && parseInt(sec/fourthsec)*fourthsec <= sec){
             Encore = FourthSkill;
+            Encore[0] = "Encore";
         }
     }
     if(SkillActivate[5] == 1 && FifthSkill[0].indexOf("Encore") < 0){
         if(beforeTime <= parseInt(sec/fifthsec)*fifthsec && parseInt(sec/fifthsec)*fifthsec <= sec){
             Encore = FifthSkill;
+            Encore[0] = "Encore";
         }
     }
 }
