@@ -239,10 +239,10 @@ function calcCover(){
                 }
                 if(SkillActivate[0]==1){SkillActivate[5] = 1;}
             }
-            CheckEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
+            //CheckEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             SetAlternate();
             CheckOverLoad(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
-            SetEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
+            //SetEncoreRate(TmpSec,beforeTime,FirstSec,SecondSec,ThirdSec,FourthSec,FifthSec);
             ActiveSkillHtml = ActiveSkillHtml.replace("life",TotalLife);
             SetSparkle();
             if(document.getElementById("Resonance").checked){
