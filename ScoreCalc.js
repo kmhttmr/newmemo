@@ -498,7 +498,7 @@ function CheckOverLoad(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
 }
 
 function SetEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
-    let tmp;
+/*    let tmp;
     if(sec == beforeTime){return;}
     if(SkillActivate[1] == 1 && FirstSkill[0].indexOf("Encore") < 0){
         if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
@@ -606,11 +606,11 @@ function SetEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fift
             tmp = FifthSkill[8];
             Encore[8] = tmp;
         }
-    }
+    }*/
 }
 
 function CheckEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fifthsec){
-    let tmp;
+/*    let tmp;
     if(sec == beforeTime){return;}
     if(SkillActivate[1] == 1 && FirstSkill[0].indexOf("Encore") >= 0){
         if(beforeTime <= parseInt(sec/firstsec)*firstsec && parseInt(sec/firstsec)*firstsec <= sec){
@@ -711,7 +711,7 @@ function CheckEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fi
             tmp = Encore[8];
             FifthSkill[8] = tmp;
         }
-    }
+    }*/
 }
 
 function CheckAlternateActivate(TargetSec,TargetInterval,sec,now,skillname){
