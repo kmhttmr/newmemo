@@ -145,6 +145,14 @@ var SkillEffect = {
 };
 
 function calcCover(){
+    SkillActivate = [0,0,0,0,0,0,0];
+    FirstSkill = ["",0,0,0,0,0,0,0,0];
+    SecondSkill = ["",0,0,0,0,0,0,0,0];
+    ThirdSkill = ["",0,0,0,0,0,0,0,0];
+    FourthSkill = ["",0,0,0,0,0,0,0,0];
+    FifthSkill = ["",0,0,0,0,0,0,0,0];
+    TmpScoreRate = [0,0,0,0,0,0,0];
+    Encore = ["",0,0,0,0,0,0,0,0];
     var beforeTime = 0;
     var apeal = document.getElementById("Apeal").value;
     var music = document.getElementById("Master").value;
@@ -715,7 +723,7 @@ function CheckEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fi
 }
 
 function CheckAlternateActivate(TargetSec,TargetInterval,sec,now,skillname){
-    if(sec <= TargetSec && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0] = 1;}
+    if(sec != "" && sec <= TargetSec && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0] = 1;}
     if(sec <= now && now >= (parseFloat(TargetSec) + parseFloat(TargetInterval)) && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0]=1;}
 }
 
