@@ -137,11 +137,14 @@ var SkillEffect = {
     Synergy:["Synergy",16,16,16,16,15,0,0,0],
     LifeUp:["LifeUp",0,0,0,0,0,0,3,0],
     Alternate:["Alternate",0,0,0,0,-20,0,0,0],
+    Mutual:["Mutual",-20,-20,-20,-20,0,0,0,0],
     Cordinate:["Cordinate",10,10,10,10,15,0,0,0],
     Encore:["Encore",0,0,0,0,0,0,0,0],
     SkillBoost:["SkillBoost",0,0,0,0,0,20,0,1],
     Unsamble:["Unsamble",0,0,0,0,0,50,0,0],
-    Symphony:["Symphony",0,0,0,0,0,50,0,1]
+    Symphony:["Symphony",0,0,0,0,0,50,0,1],
+    Magic:["Magic",0,0,0,0,0,0,0,0],
+    Refrain:["Refrain",0,0,0,0,0,0,0,0]
 };
 
 function calcCover(){
@@ -724,7 +727,7 @@ function CheckEncoreRate(sec,beforeTime,firstsec,secondsec,thirdsec,fourthsec,fi
 
 function CheckAlternateActivate(TargetSec,TargetInterval,sec,now,skillname){
     if(sec != "" && sec <= TargetSec && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0] = 1;}
-    if(sec <= now && now >= (parseFloat(TargetSec) + parseFloat(TargetInterval)) && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0]=1;}
+    if(sec != "" && sec <= now && now >= (parseFloat(TargetSec) + parseFloat(TargetInterval)) && "ScoreUp,OverLoad,Concentlation,LongAct,FrickAct,SlideAct,Focus,Synergy,Cordinate".indexOf(skillname)>=0){SkillActivate[0]=1;}
 }
 
 function SetAlternate(){
